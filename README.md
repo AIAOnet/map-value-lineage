@@ -107,7 +107,7 @@ The Mermaid graph viewer displays the generated `.mmd` graph files.
 Run:
 
 ```text
-setup.exe
+setup.bat
 ```
 
 ### Start the viewer
@@ -115,12 +115,12 @@ setup.exe
 After installation, run:
 
 ```text
-run_viewer.exe
+run_viewer.bat
 ```
 
 ### Open a graph
 
-1. Start `run_viewer.exe`.
+1. Start `run_viewer.bat`.
 2. Select or upload the required `.mmd` file.
 3. Find generated graph files under:
 
