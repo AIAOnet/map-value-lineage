@@ -2,7 +2,24 @@
 
 This project helps Codex and Claude Code understand how an entity value moves through an application, where it can change, and what may be affected by a code change.
 
-The project contains three components:
+This project consists of three components:
+
+```mermaid
+flowchart LR
+    A["1. Agent instructions<br/>Guide the AI before and after code changes"]
+    B["2. map-value-lineage skill<br/>Maps values, dependencies, and change impact"]
+    C["3. Mermaid graph viewer<br/>Displays the generated lineage graphs"]
+
+    A --> B --> C
+```
+
+1. *Agent instructions* — Help the AI understand the application and assess impact before making changes.
+
+2. *map-value-lineage skill* — Generates versioned JSON and Mermaid files that map value lineage, dependencies, changes, and related commits.
+
+3. **Mermaid graph viewer** — Opens and displays the generated Mermaid graphs from the **`entities_graphics`** directory.
+
+
 
 ## 1. Project agent instructions
 
