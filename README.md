@@ -84,6 +84,7 @@ Invoke it in Claude Code with:
 Claude Code can also select the skill automatically when the request matches its description.
 
 The skill produces:
+The user must create an **`entities_graphics`** directory in the project’s root directory. The generated JSON and Mermaid graph files will be stored there.
 
 ```text
 <entity>-<value>-vNNN.json
