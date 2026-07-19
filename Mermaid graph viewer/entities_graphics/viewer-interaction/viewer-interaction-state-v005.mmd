@@ -1,0 +1,30 @@
+%% Value Lineage v005 - based on b8c6c12642fe798f157c9120c0f2ba47350e80aa
+flowchart LR
+  subgraph Origin
+    EXTERNAL["User-supplied New-Logo.png"]
+    ASSET["assets/app-logo.png"]
+  end
+  subgraph Transformation
+    LOAD["_load_logo"]
+    SCALE["Integer subsampling<br/>target 54 px"]
+    CHECK["TclError fallback"]
+  end
+  subgraph State
+    LOGO["logo_image<br/>PhotoImage or None"]
+  end
+  subgraph Downstream
+    HEADER["Header logo"]
+    ICON["Window icon"]
+    TEXT["Text-only brand fallback"]
+    DOCS["README asset path"]
+  end
+  EXTERNAL -->|ORIGINATES_FROM| ASSET
+  ASSET -->|READS| LOAD
+  LOAD -->|TRANSFORMS_TO| SCALE
+  SCALE -->|WRITES| LOGO
+  LOAD -->|VALIDATES| CHECK
+  CHECK -.->|BRANCHES_ON| TEXT
+  LOGO -->|EXPOSES| HEADER
+  LOGO -->|EXPOSES| ICON
+  ASSET -->|EXPOSES| DOCS
+

@@ -1,0 +1,9 @@
+%% entity A: Opens a local Mermaid source file for viewing.
+%% entity B: Checks whether the diagram can continue through the render flow.
+%% relation Yes: The input is valid and processing may continue.
+%% relation No: The input is invalid and the viewer reports the problem.
+flowchart LR
+    A[Open .mmd file] --> B{Valid Mermaid?}
+    B -- Yes --> C[Render diagram]
+    C --> D[Zoom and pan]
+    B -- No --> E[Show helpful error]

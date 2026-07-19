@@ -1,0 +1,41 @@
+%% Value Lineage v003 - based on eb16caac047d8e6c7be68da28bd259d2a831964f
+flowchart LR
+  subgraph Origins
+    FILE["UTF-8 .mmd"]
+    ANN["%% entity / %% relation"]
+    DEFAULTS["Generated defaults"]
+  end
+  subgraph State
+    STATE["graphInteractionState"]
+    ENTITY["GraphNode.meaning"]
+    REL["GraphEdge.meaning"]
+    SELECTED["selected item"]
+  end
+  subgraph Mutation_Checking
+    PARSER["FlowchartParser.parse"]
+    CLICK["entity / edge / legend click"]
+    CLEAR["_clear_details"]
+    TESTS["Meaning metadata tests"]
+  end
+  subgraph Downstream
+    PANEL["Selected item details panel"]
+    DRAG["Entity dragging"]
+    FALLBACK["Static fallback"]
+    DOCS["README + sample"]
+  end
+  FILE -->|ORIGINATES_FROM| ANN
+  ANN -->|ACCEPTS| PARSER
+  DEFAULTS -->|ORIGINATES_FROM| PARSER
+  PARSER -->|WRITES| ENTITY
+  PARSER -->|WRITES| REL
+  ENTITY -->|READS| CLICK
+  REL -->|READS| CLICK
+  CLICK -->|WRITES| SELECTED
+  CLEAR -->|WRITES| SELECTED
+  SELECTED -->|EXPOSES| PANEL
+  CLICK -->|AFFECTS| DRAG
+  STATE -.->|BRANCHES_ON| FALLBACK
+  ANN -->|EXPOSES| DOCS
+  TESTS -->|VALIDATES| ENTITY
+  TESTS -->|VALIDATES| REL
+

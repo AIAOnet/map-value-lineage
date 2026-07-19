@@ -1,0 +1,779 @@
+{
+  "format": "value-lineage-impact-map",
+  "version": "1.0.0",
+  "mapVersion": 1,
+  "previousVersion": null,
+  "basedOnCommit": "f55a64802916d2b8aeec63aa5c491e74e5855d6d",
+  "previousMapCommit": null,
+  "generatedAt": "2026-07-19T18:36:03.7831582+02:00",
+  "repository": {
+    "name": "Mermaid_graph",
+    "revision": "f55a64802916d2b8aeec63aa5c491e74e5855d6d",
+    "generatedAt": "2026-07-19T18:36:03.7831582+02:00",
+    "analysisModes": [
+      "declared",
+      "static",
+      "contract",
+      "history"
+    ]
+  },
+  "target": {
+    "entityId": "entity:mermaid-viewer",
+    "valueId": "value:mermaid-viewer.graph-interaction-state",
+    "proposedChange": "Replace static bitmap interaction with draggable entities and relationship-specific edge/label colors."
+  },
+  "relationshipTypes": {
+    "ORIGINATES_FROM": "The source supplies the value.",
+    "READS": "The source reads the value.",
+    "WRITES": "The source assigns the value.",
+    "VALIDATES": "The source checks the value.",
+    "BRANCHES_ON": "The source uses the value in control flow.",
+    "TRANSFORMS_TO": "The value contributes to a derived value.",
+    "EXPOSES": "The source presents the value to the UI.",
+    "CALLS": "The source invokes the target.",
+    "AFFECTS": "The source changes target behavior."
+  },
+  "entities": [
+    {
+      "id": "entity:mermaid-viewer",
+      "kind": "application_component",
+      "name": "MermaidViewer",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "MermaidViewer",
+        "line": 14
+      }
+    }
+  ],
+  "values": [
+    {
+      "id": "value:mermaid-viewer.graph-interaction-state",
+      "entityId": "entity:mermaid-viewer",
+      "name": "graphInteractionState",
+      "dataType": "composite runtime state",
+      "allowedValues": [
+        "no source",
+        "rendering",
+        "static bitmap displayed",
+        "zooming",
+        "panning"
+      ],
+      "defaultValue": "no source; zoom=1.0",
+      "nullable": true,
+      "aliases": [
+        "source_path",
+        "original_image",
+        "display_image",
+        "zoom",
+        "render_generation",
+        "canvas diagram"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "method:init",
+      "kind": "constructor",
+      "name": "MermaidViewer.__init__",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "__init__",
+        "line": 15
+      }
+    },
+    {
+      "id": "ui:file-dialog",
+      "kind": "ui_input",
+      "name": "Open Mermaid diagram",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "open_file",
+        "line": 110
+      }
+    },
+    {
+      "id": "method:render-file",
+      "kind": "method",
+      "name": "render_file",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "render_file",
+        "line": 122
+      }
+    },
+    {
+      "id": "external:mmdc",
+      "kind": "external_process",
+      "name": "Mermaid CLI",
+      "location": {
+        "repositoryPath": "package.json",
+        "line": 7
+      }
+    },
+    {
+      "id": "method:show-render",
+      "kind": "method",
+      "name": "_show_render",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "_show_render",
+        "line": 152
+      }
+    },
+    {
+      "id": "ui:canvas-bitmap",
+      "kind": "ui_component",
+      "name": "Tk canvas bitmap",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "_update_image",
+        "line": 198
+      }
+    },
+    {
+      "id": "method:change-zoom",
+      "kind": "method",
+      "name": "change_zoom",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "change_zoom",
+        "line": 173
+      }
+    },
+    {
+      "id": "method:fit",
+      "kind": "method",
+      "name": "fit_to_window",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "fit_to_window",
+        "line": 180
+      }
+    },
+    {
+      "id": "method:pan",
+      "kind": "method",
+      "name": "pan handlers",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "_start_pan",
+        "line": 215
+      }
+    },
+    {
+      "id": "derived:render-scale",
+      "kind": "derived_value",
+      "name": "mmdc render scale",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "line": 142
+      }
+    },
+    {
+      "id": "derived:scroll-region",
+      "kind": "derived_value",
+      "name": "canvas scroll region",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "line": 213
+      }
+    },
+    {
+      "id": "ui:status",
+      "kind": "ui_component",
+      "name": "status and zoom labels",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "line": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "method:init",
+      "type": "ORIGINATES_FROM",
+      "to": "value:mermaid-viewer.graph-interaction-state",
+      "evidence": "declared",
+      "evidenceRefs": [
+        "mermaid_viewer.py:21"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "ui:file-dialog",
+      "type": "WRITES",
+      "to": "value:mermaid-viewer.graph-interaction-state",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:113"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:render-file",
+      "type": "READS",
+      "to": "value:mermaid-viewer.graph-interaction-state",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:123"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:render-file",
+      "type": "CALLS",
+      "to": "external:mmdc",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:141"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:mermaid-viewer.graph-interaction-state",
+      "type": "TRANSFORMS_TO",
+      "to": "derived:render-scale",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:142"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:show-render",
+      "type": "WRITES",
+      "to": "value:mermaid-viewer.graph-interaction-state",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:157"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:mermaid-viewer.graph-interaction-state",
+      "type": "EXPOSES",
+      "to": "ui:canvas-bitmap",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:202"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:change-zoom",
+      "type": "WRITES",
+      "to": "value:mermaid-viewer.graph-interaction-state",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:176"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:fit",
+      "type": "WRITES",
+      "to": "value:mermaid-viewer.graph-interaction-state",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:185"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:pan",
+      "type": "AFFECTS",
+      "to": "ui:canvas-bitmap",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:218"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:mermaid-viewer.graph-interaction-state",
+      "type": "TRANSFORMS_TO",
+      "to": "derived:scroll-region",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:213"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:mermaid-viewer.graph-interaction-state",
+      "type": "EXPOSES",
+      "to": "ui:status",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:164"
+      ],
+      "confidence": 1
+    }
+  ],
+  "mutationRules": [
+    {
+      "valueId": "value:mermaid-viewer.graph-interaction-state",
+      "allowedWriters": [
+        "method:init",
+        "ui:file-dialog",
+        "method:show-render",
+        "method:change-zoom",
+        "method:fit"
+      ],
+      "requiredChecks": []
+    }
+  ],
+  "history": {
+    "commits": [
+      {
+        "hash": "f55a64802916d2b8aeec63aa5c491e74e5855d6d",
+        "author": {
+          "name": "salem",
+          "email": "salem.badawi@ai-ao.net"
+        },
+        "authoredAt": "2026-07-19T18:35:43+02:00",
+        "committedAt": "2026-07-19T18:35:43+02:00",
+        "subject": "chore: establish project baseline",
+        "affectedPaths": [
+          "mermaid_viewer.py",
+          "README.md",
+          "package.json"
+        ],
+        "matchedAliases": [
+          "canvas",
+          "zoom",
+          "display_image",
+          "render_file",
+          "mouse"
+        ],
+        "relationship": "introduced",
+        "reason": "Initial tracked baseline containing the complete current viewer interaction and rendering implementation.",
+        "evidence": [
+          {
+            "type": "diff",
+            "detail": "Adds the viewer, renderer dependency, and usage documentation as the repository baseline."
+          }
+        ],
+        "confidence": 1
+      }
+    ],
+    "coverage": {
+      "examinedRefs": [
+        "--all"
+      ],
+      "isShallow": false,
+      "followedPaths": [
+        "mermaid_viewer.py"
+      ],
+      "searchAliases": [
+        "canvas",
+        "zoom",
+        "display_image",
+        "render_file",
+        "mouse"
+      ],
+      "earliestExaminedCommit": "f55a64802916d2b8aeec63aa5c491e74e5855d6d",
+      "limitations": [
+        "Repository history begins at the imported baseline; pre-initialization history is unavailable."
+      ],
+      "excludedCandidateCount": 0
+    }
+  },
+  "changeScenarios": [
+    {
+      "id": "change:interactive-svg",
+      "changeType": "behavior-change",
+      "subject": "value:mermaid-viewer.graph-interaction-state",
+      "directlyAffected": [
+        "method:render-file",
+        "external:mmdc",
+        "method:show-render",
+        "ui:canvas-bitmap",
+        "method:change-zoom",
+        "method:fit",
+        "method:pan"
+      ],
+      "transitivelyAffected": [
+        "derived:render-scale",
+        "derived:scroll-region",
+        "ui:status"
+      ],
+      "compatibilityRisks": [
+        "Mermaid diagram types may differ in SVG node/edge structure.",
+        "Replacing the bitmap without fallback could break diagrams unsupported by interactive parsing."
+      ],
+      "dataMigration": "None",
+      "requiredVerification": [
+        "open sample diagram",
+        "drag a node",
+        "verify connected edges and labels move",
+        "verify relation colors and legend",
+        "zoom and fit",
+        "renderer failure fallback"
+      ],
+      "rollout": "Desktop application update",
+      "rollback": "Revert the focused interactive-graph commit."
+    }
+  ],
+  "questionsAnswered": [
+    {
+      "questionNumber": 1,
+      "question": "What is the exact entity and value being mapped?",
+      "status": "answered",
+      "answer": "MermaidViewer.graphInteractionState: the viewer state controlling rendered diagram display, zoom, and whole-canvas panning.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:14",
+        "mermaid_viewer.py:21"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 2,
+      "question": "What does the value mean in the business or application domain?",
+      "status": "answered",
+      "answer": "It represents how a locally rendered Mermaid diagram is displayed and manipulated by the desktop user.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:122",
+        "mermaid_viewer.py:198"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 3,
+      "question": "What are its type, allowed values, nullability, default, constraints, and invariants?",
+      "status": "answered",
+      "answer": "Composite runtime state: source_path and images are nullable; zoom is float default 1.0 constrained to 0.1..4.0; generation is integer default 0; display is a single immutable bitmap per render.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:21",
+        "mermaid_viewer.py:24",
+        "mermaid_viewer.py:176"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 4,
+      "question": "What aliases represent the same value in code, APIs, storage, events, UI, configuration, and documentation?",
+      "status": "answered",
+      "answer": "Aliases are source_path, original_image, display_image, zoom, render_generation, canvas diagram tag, and the README terms zoom and pan.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:21",
+        "mermaid_viewer.py:200",
+        "README.md:26"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 5,
+      "question": "Where does the value originate?",
+      "status": "answered",
+      "answer": "Defaults originate in MermaidViewer.__init__; the source path originates in the file dialog; bitmap pixels originate from Mermaid CLI output.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:15",
+        "mermaid_viewer.py:110",
+        "mermaid_viewer.py:138"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 6,
+      "question": "Which constructors, defaults, APIs, imports, events, configuration sources, database reads, or external systems can supply it?",
+      "status": "answered",
+      "answer": "The constructor supplies defaults, askopenfilename supplies a local path, and mmdc supplies PNG output. No API, event, configuration, or database source exists.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:15",
+        "mermaid_viewer.py:111",
+        "mermaid_viewer.py:141"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 7,
+      "question": "Which methods, functions, jobs, handlers, queries, or users can create, assign, or mutate it?",
+      "status": "answered",
+      "answer": "open_file, render_file, _show_render, change_zoom, fit_to_window, _update_image, and mouse handlers mutate the composite state.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:110",
+        "mermaid_viewer.py:122",
+        "mermaid_viewer.py:152",
+        "mermaid_viewer.py:173",
+        "mermaid_viewer.py:180"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 8,
+      "question": "Can any code bypass the intended mutation path?",
+      "status": "answered_with_gaps",
+      "answer": "Instance attributes are public Python attributes, so callers could mutate them directly; no external callers are present in this repository.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:21"
+      ],
+      "gaps": [
+        "Dynamic external Python callers were not observed."
+      ]
+    },
+    {
+      "questionNumber": 9,
+      "question": "Where is the value validated, normalized, sanitized, authorized, or rejected?",
+      "status": "answered",
+      "answer": "File selection limits the dialog filter but accepts all files; renderer presence and return code are checked; zoom is clamped; there is no authorization layer.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:111",
+        "mermaid_viewer.py:126",
+        "mermaid_viewer.py:146",
+        "mermaid_viewer.py:176"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 10,
+      "question": "Where is the value compared, switched on, matched, filtered, or used to control a branch?",
+      "status": "answered",
+      "answer": "Source/image presence, render generation, renderer return code, and Shift modifier control branches.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:119",
+        "mermaid_viewer.py:153",
+        "mermaid_viewer.py:146",
+        "mermaid_viewer.py:229"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 11,
+      "question": "Where is the value stored, indexed, cached, copied, logged, measured, backed up, or searched?",
+      "status": "answered_with_gaps",
+      "answer": "It exists only in process memory and temporary PNG files. It is not indexed, backed up, or persisted as application state.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:21",
+        "mermaid_viewer.py:139"
+      ],
+      "gaps": [
+        "Temporary PNG cleanup is not implemented."
+      ]
+    },
+    {
+      "questionNumber": 12,
+      "question": "Which database columns, schemas, constraints, migrations, and serialization formats represent it?",
+      "status": "answered",
+      "answer": "No database schema exists. The rendered serialization format is PNG and the source format is Mermaid .mmd text.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:111",
+        "mermaid_viewer.py:139"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 13,
+      "question": "Which APIs, commands, forms, files, or messages accept it?",
+      "status": "answered",
+      "answer": "The file-open dialog accepts .mmd paths; mmdc accepts the source path, output path, background, and scale command arguments.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:111",
+        "mermaid_viewer.py:142"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 14,
+      "question": "Which APIs, views, reports, exports, events, logs, or metrics expose it?",
+      "status": "answered",
+      "answer": "Tk canvas, title, zoom label, and status label expose it locally. No API, report, event, log, or metric exposes it.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:68",
+        "mermaid_viewer.py:102",
+        "mermaid_viewer.py:163",
+        "mermaid_viewer.py:202"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 15,
+      "question": "Which derived values are calculated from it?",
+      "status": "answered",
+      "answer": "Requested render scale, fitted zoom, bitmap center coordinates, and scroll region are derived values.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:142",
+        "mermaid_viewer.py:185",
+        "mermaid_viewer.py:210"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 16,
+      "question": "Which methods, UI components, permissions, workflows, side effects, and external consumers depend on it directly?",
+      "status": "answered",
+      "answer": "Zoom controls, mouse wheel, fit button, canvas image, scrollbars, status text, and mmdc subprocess depend directly on it.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:67",
+        "mermaid_viewer.py:77",
+        "mermaid_viewer.py:136",
+        "mermaid_viewer.py:228"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 17,
+      "question": "What depends on those direct consumers transitively?",
+      "status": "answered",
+      "answer": "Window usability, label readability, panning behavior, and local temporary output depend transitively on render and canvas state.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:138",
+        "mermaid_viewer.py:198",
+        "README.md:26"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 18,
+      "question": "Which caches, calculations, contracts, assumptions, or indexes must be invalidated or rebuilt when it changes?",
+      "status": "answered",
+      "answer": "A zoom change schedules a new Mermaid render and replaces the PhotoImage; no cache or index exists.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:178",
+        "mermaid_viewer.py:189",
+        "mermaid_viewer.py:200"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 19,
+      "question": "Which tests specify or depend on its current behavior?",
+      "status": "answered_with_gaps",
+      "answer": "No automated tests are present. README usage text is the only declared behavioral evidence.",
+      "evidenceRefs": [
+        "README.md:23"
+      ],
+      "gaps": [
+        "Runtime UI tests are absent."
+      ]
+    },
+    {
+      "questionNumber": 20,
+      "question": "Which commits introduced or changed the entity, value, aliases, constraints, mutations, checks, storage, APIs, events, and downstream behavior?",
+      "status": "answered",
+      "answer": "The initial baseline commit f55a648 contains the complete current viewer implementation.",
+      "evidenceRefs": [
+        "git:f55a64802916d2b8aeec63aa5c491e74e5855d6d"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 21,
+      "question": "Why is each included commit relevant, and what evidence supports that conclusion?",
+      "status": "answered",
+      "answer": "It adds mermaid_viewer.py and the README as initial tracked files, establishing all current interaction and rendering behavior.",
+      "evidenceRefs": [
+        "git:f55a64802916d2b8aeec63aa5c491e74e5855d6d"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 22,
+      "question": "Is repository history complete, shallow, squashed, renamed, split across repositories, or otherwise limited?",
+      "status": "answered_with_gaps",
+      "answer": "The new repository is not shallow, but history begins with a single imported baseline and cannot describe work before initialization.",
+      "evidenceRefs": [
+        "git:f55a64802916d2b8aeec63aa5c491e74e5855d6d"
+      ],
+      "gaps": [
+        "Pre-initialization history is unavailable."
+      ]
+    },
+    {
+      "questionNumber": 23,
+      "question": "If the proposed change adds, removes, renames, retypes, or reinterprets the value, what is directly affected?",
+      "status": "answered",
+      "answer": "Changing from one bitmap to interactive entities directly affects render output, canvas representation, mouse dispatch, node positions, relationship styles, legend UI, zoom, fit, and reload.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:77",
+        "mermaid_viewer.py:138",
+        "mermaid_viewer.py:198"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 24,
+      "question": "What is transitively affected by the proposed change?",
+      "status": "answered",
+      "answer": "Text clarity, scrollbar extents, status help, README instructions, renderer dependencies, and error handling are transitively affected.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:100",
+        "mermaid_viewer.py:203",
+        "README.md:26"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 25,
+      "question": "Could existing stored data, API clients, event consumers, exhaustive branches, reports, or UI code reject or misunderstand the new behavior?",
+      "status": "answered_with_gaps",
+      "answer": "No stored data or external contracts exist. Mermaid diagram syntax variants may not expose uniform SVG node and edge metadata, creating compatibility risk.",
+      "evidenceRefs": [
+        "package.json:7"
+      ],
+      "gaps": [
+        "All Mermaid diagram types have not been runtime-tested."
+      ]
+    },
+    {
+      "questionNumber": 26,
+      "question": "Are a migration, backfill, compatibility period, contract version, feature flag, rollout plan, or rollback plan required?",
+      "status": "answered",
+      "answer": "No data migration is required. Rollout is a direct desktop update; rollback is reverting the focused feature commit. The static-render fallback should be preserved if interactive parsing fails.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:122"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 27,
+      "question": "Which conclusions are confirmed by static analysis, runtime observation, contracts, declarations, or Git history?",
+      "status": "answered_with_gaps",
+      "answer": "State declarations and flows are confirmed by declared/static evidence; CLI options are contract evidence; the initial commit is history evidence. No successful runtime GUI observation is available.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:14",
+        "package.json:7",
+        "git:f55a64802916d2b8aeec63aa5c491e74e5855d6d"
+      ],
+      "gaps": [
+        "Python runtime is unavailable in the execution environment."
+      ]
+    },
+    {
+      "questionNumber": 28,
+      "question": "Which relationships remain inferred, dynamic, external, or unknown?",
+      "status": "answered_with_gaps",
+      "answer": "SVG structure across every Mermaid diagram type, runtime drag ergonomics, Puppeteer reliability, and external mmdc behavior remain dynamic or unverified.",
+      "evidenceRefs": [
+        "package.json:7"
+      ],
+      "gaps": [
+        "Runtime GUI and broad Mermaid-format verification remain unavailable."
+      ]
+    }
+  ],
+  "coverage": {
+    "evidenceModes": [
+      "declared",
+      "static",
+      "contract",
+      "history"
+    ],
+    "unmappedValues": [],
+    "unresolvedDynamicCalls": [
+      "Mermaid CLI SVG DOM varies by diagram type.",
+      "No runtime Python/Tk GUI observation available."
+    ]
+  },
+  "gaps": [
+    "No automated tests exist.",
+    "Python runtime is unavailable in this environment.",
+    "Pre-initialization Git history is unavailable."
+  ],
+  "recommendedVerification": [
+    "Parse JSON and validate all edge endpoints.",
+    "Review Mermaid SVG structure for supported diagram types.",
+    "Run manual GUI interaction tests on Windows.",
+    "Preserve a clear failure path for unsupported render output."
+  ]
+}

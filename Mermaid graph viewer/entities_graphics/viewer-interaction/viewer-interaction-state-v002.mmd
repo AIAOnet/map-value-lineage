@@ -1,0 +1,44 @@
+%% Value Lineage v002 - based on c57f240fad0997d8557ee17696587b073a12a7d1
+flowchart LR
+  subgraph Origins
+    FILE["UTF-8 .mmd file"]
+    PARSER["FlowchartParser.parse"]
+    MMDC["Mermaid CLI fallback"]
+  end
+  subgraph State
+    STATE["graphInteractionState"]
+    POS["InteractiveGraph.positions"]
+    COLORS["relation_colors"]
+    DRAG["drag_node_id"]
+  end
+  subgraph Mutation_Checking
+    LOAD["_load_diagram"]
+    MOVE["_drag_pan"]
+    ZOOM["zoom / fit / pan"]
+    TESTS["FlowchartParserTests"]
+  end
+  subgraph Downstream
+    ENTITIES["Native canvas entities"]
+    EDGES["Colored edges + labels"]
+    LEGEND["Relationship legend"]
+    STATIC["Static bitmap fallback"]
+    STATUS["Status + help"]
+  end
+  FILE -->|ORIGINATES_FROM| LOAD
+  LOAD -->|CALLS| PARSER
+  PARSER -->|TRANSFORMS_TO| STATE
+  PARSER -->|TRANSFORMS_TO| POS
+  PARSER -->|TRANSFORMS_TO| COLORS
+  LOAD -.->|BRANCHES_ON| MMDC
+  MMDC -->|EXPOSES| STATIC
+  MOVE -->|WRITES| POS
+  DRAG -->|AFFECTS| MOVE
+  POS -->|EXPOSES| ENTITIES
+  POS -->|AFFECTS| EDGES
+  COLORS -->|EXPOSES| EDGES
+  COLORS -->|EXPOSES| LEGEND
+  ZOOM -->|READS| STATE
+  STATE -->|EXPOSES| STATUS
+  TESTS -->|VALIDATES| PARSER
+  TESTS -->|VALIDATES| COLORS
+

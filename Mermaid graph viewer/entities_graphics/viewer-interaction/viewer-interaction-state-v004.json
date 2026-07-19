@@ -1,0 +1,1383 @@
+{
+  "format": "value-lineage-impact-map",
+  "version": "1.0.0",
+  "mapVersion": 4,
+  "previousVersion": 3,
+  "basedOnCommit": "6ad2fa53c9f72aed2cebc922823df991d00549b8",
+  "previousMapCommit": "d81497fb9cb22c1cdbdf62fd2e5c75f9262220bb",
+  "generatedAt": "2026-07-19T19:16:23.5330652+02:00",
+  "repository": {
+    "name": "Mermaid_graph",
+    "revision": "6ad2fa53c9f72aed2cebc922823df991d00549b8",
+    "generatedAt": "2026-07-19T19:16:23.5330652+02:00",
+    "analysisModes": [
+      "declared",
+      "static",
+      "contract",
+      "history"
+    ]
+  },
+  "target": {
+    "entityId": "entity:mermaid-viewer",
+    "valueId": "value:mermaid-viewer.graph-interaction-state",
+    "proposedChange": "Implemented built-in meanings for standard relationship labels without changing the interface."
+  },
+  "relationshipTypes": {
+    "ORIGINATES_FROM": "The source supplies the value.",
+    "READS": "The source reads the value.",
+    "WRITES": "The source assigns the value.",
+    "VALIDATES": "The source checks the value.",
+    "BRANCHES_ON": "The source uses the value in control flow.",
+    "TRANSFORMS_TO": "The value contributes to a derived value.",
+    "EXPOSES": "The source presents the value to the UI.",
+    "CALLS": "The source invokes the target.",
+    "AFFECTS": "The source changes target behavior.",
+    "ACCEPTS": "The source supplies accepted input to the target."
+  },
+  "entities": [
+    {
+      "id": "entity:mermaid-viewer",
+      "kind": "application_component",
+      "name": "MermaidViewer",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "MermaidViewer",
+        "line": 14
+      }
+    }
+  ],
+  "values": [
+    {
+      "id": "value:mermaid-viewer.graph-interaction-state",
+      "entityId": "entity:mermaid-viewer",
+      "name": "graphInteractionState",
+      "dataType": "composite runtime state",
+      "allowedValues": [
+        "no source",
+        "interactive flowchart displayed",
+        "dragging entity",
+        "panning canvas",
+        "zooming interactive graph",
+        "static fallback rendering",
+        "static bitmap displayed",
+        "entity selected",
+        "relationship selected",
+        "relationship type selected"
+      ],
+      "defaultValue": "no source; zoom=1.0",
+      "nullable": true,
+      "aliases": [
+        "source_path",
+        "original_image",
+        "display_image",
+        "zoom",
+        "render_generation",
+        "canvas diagram",
+        "graph",
+        "graph.positions",
+        "drag_node_id",
+        "relation_colors",
+        "GraphNode.meaning",
+        "GraphEdge.meaning",
+        "detail_title",
+        "detail_kind",
+        "detail_meaning",
+        "selecting_edge",
+        "RELATION_MEANINGS",
+        "standard relationship meaning"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "method:init",
+      "kind": "constructor",
+      "name": "MermaidViewer.__init__",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "__init__",
+        "line": 15
+      }
+    },
+    {
+      "id": "ui:file-dialog",
+      "kind": "ui_input",
+      "name": "Open Mermaid diagram",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "open_file",
+        "line": 110
+      }
+    },
+    {
+      "id": "method:render-file",
+      "kind": "method",
+      "name": "render_file",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "render_file",
+        "line": 122
+      }
+    },
+    {
+      "id": "external:mmdc",
+      "kind": "external_process",
+      "name": "Mermaid CLI",
+      "location": {
+        "repositoryPath": "package.json",
+        "line": 7
+      }
+    },
+    {
+      "id": "method:show-render",
+      "kind": "method",
+      "name": "_show_render",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "_show_render",
+        "line": 152
+      }
+    },
+    {
+      "id": "ui:canvas-bitmap",
+      "kind": "ui_component",
+      "name": "Tk canvas bitmap",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "_update_image",
+        "line": 198
+      }
+    },
+    {
+      "id": "method:change-zoom",
+      "kind": "method",
+      "name": "change_zoom",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "change_zoom",
+        "line": 173
+      }
+    },
+    {
+      "id": "method:fit",
+      "kind": "method",
+      "name": "fit_to_window",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "fit_to_window",
+        "line": 180
+      }
+    },
+    {
+      "id": "method:pan",
+      "kind": "method",
+      "name": "pan handlers",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "_start_pan",
+        "line": 215
+      }
+    },
+    {
+      "id": "derived:render-scale",
+      "kind": "derived_value",
+      "name": "mmdc render scale",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "line": 142
+      }
+    },
+    {
+      "id": "derived:scroll-region",
+      "kind": "derived_value",
+      "name": "canvas scroll region",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "line": 213
+      }
+    },
+    {
+      "id": "ui:status",
+      "kind": "ui_component",
+      "name": "status and zoom labels",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "line": 100
+      }
+    },
+    {
+      "id": "method:parse-flowchart",
+      "kind": "parser",
+      "name": "FlowchartParser.parse",
+      "location": {
+        "repositoryPath": "interactive_graph.py",
+        "symbol": "FlowchartParser.parse",
+        "line": 65
+      }
+    },
+    {
+      "id": "value:node-positions",
+      "kind": "runtime_state",
+      "name": "InteractiveGraph.positions",
+      "location": {
+        "repositoryPath": "interactive_graph.py",
+        "symbol": "InteractiveGraph.positions",
+        "line": 35
+      }
+    },
+    {
+      "id": "value:relation-colors",
+      "kind": "derived_value",
+      "name": "relationship color map",
+      "location": {
+        "repositoryPath": "interactive_graph.py",
+        "symbol": "build_relation_color_map",
+        "line": 44
+      }
+    },
+    {
+      "id": "ui:interactive-entities",
+      "kind": "ui_component",
+      "name": "native draggable canvas entities",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "_draw_graph",
+        "line": 278
+      }
+    },
+    {
+      "id": "ui:relationship-legend",
+      "kind": "ui_component",
+      "name": "relationship color legend",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "_update_legend",
+        "line": 164
+      }
+    },
+    {
+      "id": "method:drag-entity",
+      "kind": "event_handler",
+      "name": "entity drag handlers",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "_drag_pan",
+        "line": 370
+      }
+    },
+    {
+      "id": "method:static-fallback",
+      "kind": "fallback",
+      "name": "static Mermaid renderer fallback",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "_load_diagram",
+        "line": 134
+      }
+    },
+    {
+      "id": "test:interactive-graph",
+      "kind": "test",
+      "name": "FlowchartParserTests",
+      "location": {
+        "repositoryPath": "test_interactive_graph.py",
+        "symbol": "FlowchartParserTests",
+        "line": 6
+      }
+    },
+    {
+      "id": "input:meaning-annotations",
+      "kind": "file_metadata",
+      "name": "%% entity / %% relation annotations",
+      "location": {
+        "repositoryPath": "README.md",
+        "line": 35
+      }
+    },
+    {
+      "id": "value:entity-meaning",
+      "kind": "metadata",
+      "name": "GraphNode.meaning",
+      "location": {
+        "repositoryPath": "interactive_graph.py",
+        "symbol": "GraphNode.meaning",
+        "line": 21
+      }
+    },
+    {
+      "id": "value:relation-meaning",
+      "kind": "metadata",
+      "name": "GraphEdge.meaning",
+      "location": {
+        "repositoryPath": "interactive_graph.py",
+        "symbol": "GraphEdge.meaning",
+        "line": 30
+      }
+    },
+    {
+      "id": "value:selected-item",
+      "kind": "runtime_state",
+      "name": "selected graph item",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "detail_title",
+        "line": 34
+      }
+    },
+    {
+      "id": "method:meaning-parser",
+      "kind": "parser",
+      "name": "meaning annotation parsing and defaults",
+      "location": {
+        "repositoryPath": "interactive_graph.py",
+        "symbol": "FlowchartParser.parse",
+        "line": 76
+      }
+    },
+    {
+      "id": "method:selection-handlers",
+      "kind": "event_handler",
+      "name": "graph details selection handlers",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "_show_node_details",
+        "line": 197
+      }
+    },
+    {
+      "id": "ui:details-panel",
+      "kind": "ui_component",
+      "name": "selected item meaning panel",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "line": 91
+      }
+    },
+    {
+      "id": "test:meaning-metadata",
+      "kind": "test",
+      "name": "meaning annotation and default tests",
+      "location": {
+        "repositoryPath": "test_interactive_graph.py",
+        "symbol": "test_parses_entity_and_relation_meanings",
+        "line": 34
+      }
+    },
+    {
+      "id": "constant:relation-meanings",
+      "kind": "constant",
+      "name": "RELATION_MEANINGS",
+      "location": {
+        "repositoryPath": "interactive_graph.py",
+        "symbol": "RELATION_MEANINGS",
+        "line": 15
+      }
+    },
+    {
+      "id": "method:standard-meaning-lookup",
+      "kind": "transformation",
+      "name": "standard relationship meaning lookup",
+      "location": {
+        "repositoryPath": "interactive_graph.py",
+        "symbol": "FlowchartParser.parse",
+        "line": 146
+      }
+    },
+    {
+      "id": "test:standard-meanings",
+      "kind": "test",
+      "name": "standard meaning and override tests",
+      "location": {
+        "repositoryPath": "test_interactive_graph.py",
+        "symbol": "test_supplies_standard_relationship_meanings",
+        "line": 56
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "method:init",
+      "type": "ORIGINATES_FROM",
+      "to": "value:mermaid-viewer.graph-interaction-state",
+      "evidence": "declared",
+      "evidenceRefs": [
+        "mermaid_viewer.py:21"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "ui:file-dialog",
+      "type": "WRITES",
+      "to": "value:mermaid-viewer.graph-interaction-state",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:113"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:render-file",
+      "type": "READS",
+      "to": "value:mermaid-viewer.graph-interaction-state",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:123"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:render-file",
+      "type": "CALLS",
+      "to": "external:mmdc",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:141"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:mermaid-viewer.graph-interaction-state",
+      "type": "TRANSFORMS_TO",
+      "to": "derived:render-scale",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:142"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:show-render",
+      "type": "WRITES",
+      "to": "value:mermaid-viewer.graph-interaction-state",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:157"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:mermaid-viewer.graph-interaction-state",
+      "type": "EXPOSES",
+      "to": "ui:canvas-bitmap",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:202"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:change-zoom",
+      "type": "WRITES",
+      "to": "value:mermaid-viewer.graph-interaction-state",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:176"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:fit",
+      "type": "WRITES",
+      "to": "value:mermaid-viewer.graph-interaction-state",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:185"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:pan",
+      "type": "AFFECTS",
+      "to": "ui:canvas-bitmap",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:218"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:mermaid-viewer.graph-interaction-state",
+      "type": "TRANSFORMS_TO",
+      "to": "derived:scroll-region",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:213"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:mermaid-viewer.graph-interaction-state",
+      "type": "EXPOSES",
+      "to": "ui:status",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:164"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "ui:file-dialog",
+      "type": "CALLS",
+      "to": "method:parse-flowchart",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:134"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:parse-flowchart",
+      "type": "TRANSFORMS_TO",
+      "to": "value:node-positions",
+      "evidence": "static",
+      "evidenceRefs": [
+        "interactive_graph.py:65",
+        "interactive_graph.py:137"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:parse-flowchart",
+      "type": "BRANCHES_ON",
+      "to": "method:static-fallback",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:140"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:node-positions",
+      "type": "EXPOSES",
+      "to": "ui:interactive-entities",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:278"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:drag-entity",
+      "type": "WRITES",
+      "to": "value:node-positions",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:375"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:drag-entity",
+      "type": "AFFECTS",
+      "to": "ui:interactive-entities",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:377"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:parse-flowchart",
+      "type": "TRANSFORMS_TO",
+      "to": "value:relation-colors",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:152",
+        "interactive_graph.py:44"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:relation-colors",
+      "type": "EXPOSES",
+      "to": "ui:interactive-entities",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:297"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:relation-colors",
+      "type": "EXPOSES",
+      "to": "ui:relationship-legend",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:174"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "test:interactive-graph",
+      "type": "VALIDATES",
+      "to": "method:parse-flowchart",
+      "evidence": "static",
+      "evidenceRefs": [
+        "test_interactive_graph.py:7"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "from": "test:interactive-graph",
+      "type": "VALIDATES",
+      "to": "value:relation-colors",
+      "evidence": "static",
+      "evidenceRefs": [
+        "test_interactive_graph.py:20"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "from": "input:meaning-annotations",
+      "type": "ACCEPTS",
+      "to": "method:meaning-parser",
+      "evidence": "declared",
+      "evidenceRefs": [
+        "README.md:31",
+        "interactive_graph.py:66"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:meaning-parser",
+      "type": "WRITES",
+      "to": "value:entity-meaning",
+      "evidence": "static",
+      "evidenceRefs": [
+        "interactive_graph.py:76",
+        "interactive_graph.py:115"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:meaning-parser",
+      "type": "WRITES",
+      "to": "value:relation-meaning",
+      "evidence": "static",
+      "evidenceRefs": [
+        "interactive_graph.py:77",
+        "interactive_graph.py:122"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "ui:interactive-entities",
+      "type": "AFFECTS",
+      "to": "method:selection-handlers",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:404"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "ui:relationship-legend",
+      "type": "AFFECTS",
+      "to": "method:selection-handlers",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:190"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:selection-handlers",
+      "type": "WRITES",
+      "to": "value:selected-item",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:197",
+        "mermaid_viewer.py:205",
+        "mermaid_viewer.py:215"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:entity-meaning",
+      "type": "READS",
+      "to": "method:selection-handlers",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:203"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:relation-meaning",
+      "type": "READS",
+      "to": "method:selection-handlers",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:213",
+        "mermaid_viewer.py:221"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:selected-item",
+      "type": "EXPOSES",
+      "to": "ui:details-panel",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:91"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "test:meaning-metadata",
+      "type": "VALIDATES",
+      "to": "value:entity-meaning",
+      "evidence": "static",
+      "evidenceRefs": [
+        "test_interactive_graph.py:34",
+        "test_interactive_graph.py:49"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "from": "test:meaning-metadata",
+      "type": "VALIDATES",
+      "to": "value:relation-meaning",
+      "evidence": "static",
+      "evidenceRefs": [
+        "test_interactive_graph.py:34",
+        "test_interactive_graph.py:49"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "from": "constant:relation-meanings",
+      "type": "ORIGINATES_FROM",
+      "to": "method:standard-meaning-lookup",
+      "evidence": "declared",
+      "evidenceRefs": [
+        "interactive_graph.py:15",
+        "interactive_graph.py:146"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:standard-meaning-lookup",
+      "type": "WRITES",
+      "to": "value:relation-meaning",
+      "evidence": "static",
+      "evidenceRefs": [
+        "interactive_graph.py:142",
+        "interactive_graph.py:146"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "input:meaning-annotations",
+      "type": "AFFECTS",
+      "to": "method:standard-meaning-lookup",
+      "evidence": "static",
+      "evidenceRefs": [
+        "interactive_graph.py:142"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "test:standard-meanings",
+      "type": "VALIDATES",
+      "to": "constant:relation-meanings",
+      "evidence": "static",
+      "evidenceRefs": [
+        "test_interactive_graph.py:56"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "from": "test:standard-meanings",
+      "type": "VALIDATES",
+      "to": "method:standard-meaning-lookup",
+      "evidence": "static",
+      "evidenceRefs": [
+        "test_interactive_graph.py:66"
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "mutationRules": [
+    {
+      "valueId": "value:mermaid-viewer.graph-interaction-state",
+      "allowedWriters": [
+        "method:init",
+        "ui:file-dialog",
+        "method:show-render",
+        "method:change-zoom",
+        "method:fit"
+      ],
+      "requiredChecks": []
+    },
+    {
+      "valueId": "value:node-positions",
+      "allowedWriters": [
+        "method:parse-flowchart",
+        "method:drag-entity"
+      ],
+      "requiredChecks": []
+    },
+    {
+      "valueId": "value:entity-meaning",
+      "allowedWriters": [
+        "method:meaning-parser"
+      ],
+      "requiredChecks": []
+    },
+    {
+      "valueId": "value:relation-meaning",
+      "allowedWriters": [
+        "method:meaning-parser"
+      ],
+      "requiredChecks": []
+    },
+    {
+      "valueId": "value:selected-item",
+      "allowedWriters": [
+        "method:selection-handlers"
+      ],
+      "requiredChecks": []
+    }
+  ],
+  "history": {
+    "commits": [
+      {
+        "hash": "f55a64802916d2b8aeec63aa5c491e74e5855d6d",
+        "author": {
+          "name": "salem",
+          "email": "salem.badawi@ai-ao.net"
+        },
+        "authoredAt": "2026-07-19T18:35:43+02:00",
+        "committedAt": "2026-07-19T18:35:43+02:00",
+        "subject": "chore: establish project baseline",
+        "affectedPaths": [
+          "mermaid_viewer.py",
+          "README.md",
+          "package.json"
+        ],
+        "matchedAliases": [
+          "canvas",
+          "zoom",
+          "display_image",
+          "render_file",
+          "mouse"
+        ],
+        "relationship": "introduced",
+        "reason": "Initial tracked baseline containing the complete current viewer interaction and rendering implementation.",
+        "evidence": [
+          {
+            "type": "diff",
+            "detail": "Adds the viewer, renderer dependency, and usage documentation as the repository baseline."
+          }
+        ],
+        "confidence": 1
+      },
+      {
+        "hash": "c57f240fad0997d8557ee17696587b073a12a7d1",
+        "author": {
+          "name": "salem",
+          "email": "salem.badawi@ai-ao.net"
+        },
+        "authoredAt": "2026-07-19T18:44:05+02:00",
+        "committedAt": "2026-07-19T18:44:05+02:00",
+        "subject": "feat(viewer): add interactive flowchart entities",
+        "affectedPaths": [
+          "interactive_graph.py",
+          "mermaid_viewer.py",
+          "test_interactive_graph.py",
+          "README.md"
+        ],
+        "matchedAliases": [
+          "interactive",
+          "graph",
+          "positions",
+          "relation_colors",
+          "drag_node_id"
+        ],
+        "relationship": "modified",
+        "reason": "Introduces native flowchart parsing, draggable entity position mutation, relationship color mapping, legend rendering, tests, and documented fallback behavior.",
+        "evidence": [
+          {
+            "type": "diff",
+            "detail": "Adds InteractiveGraph and FlowchartParser, renders native canvas entities/edges, updates positions during drag, and adds relationship color tests."
+          }
+        ],
+        "confidence": 1
+      },
+      {
+        "hash": "eb16caac047d8e6c7be68da28bd259d2a831964f",
+        "author": {
+          "name": "salem",
+          "email": "salem.badawi@ai-ao.net"
+        },
+        "authoredAt": "2026-07-19T19:01:41+02:00",
+        "committedAt": "2026-07-19T19:01:41+02:00",
+        "subject": "feat(viewer): explain graph entities and relations",
+        "affectedPaths": [
+          "README.md",
+          "interactive_graph.py",
+          "mermaid_viewer.py",
+          "sample.mmd",
+          "test_interactive_graph.py"
+        ],
+        "matchedAliases": [
+          "meaning",
+          "selected",
+          "detail_meaning",
+          "GraphNode.meaning",
+          "GraphEdge.meaning"
+        ],
+        "relationship": "modified",
+        "reason": "Adds optional meaning annotations, parser defaults, selected-item state, clickable entity/edge/legend consumers, details UI, examples, and tests.",
+        "evidence": [
+          {
+            "type": "diff",
+            "detail": "Adds meaning fields and annotation parsing, binds selection handlers to graph and legend items, and exposes meaning in the sidebar."
+          }
+        ],
+        "confidence": 1
+      },
+      {
+        "hash": "6ad2fa53c9f72aed2cebc922823df991d00549b8",
+        "author": {
+          "name": "salem",
+          "email": "salem.badawi@ai-ao.net"
+        },
+        "authoredAt": "2026-07-19T19:15:43+02:00",
+        "committedAt": "2026-07-19T19:15:43+02:00",
+        "subject": "feat(viewer): define standard relationship meanings",
+        "affectedPaths": [
+          "README.md",
+          "interactive_graph.py",
+          "test_interactive_graph.py"
+        ],
+        "matchedAliases": [
+          "RELATION_MEANINGS",
+          "READS",
+          "WRITES",
+          "GraphEdge.meaning"
+        ],
+        "relationship": "modified",
+        "reason": "Adds 17 built-in lineage relationship definitions, case-insensitive fallback lookup, explicit-annotation precedence tests, and documentation.",
+        "evidence": [
+          {
+            "type": "diff",
+            "detail": "Declares RELATION_MEANINGS and inserts it between explicit annotation lookup and the generic connection description."
+          }
+        ],
+        "confidence": 1
+      }
+    ],
+    "coverage": {
+      "examinedRefs": [
+        "--all"
+      ],
+      "isShallow": false,
+      "followedPaths": [
+        "mermaid_viewer.py",
+        "interactive_graph.py",
+        "test_interactive_graph.py"
+      ],
+      "searchAliases": [
+        "interactive",
+        "graph",
+        "position",
+        "relation",
+        "color",
+        "drag",
+        "meaning",
+        "description",
+        "selected",
+        "RELATION_MEANINGS",
+        "standard relationship meaning",
+        "READS",
+        "WRITES"
+      ],
+      "earliestExaminedCommit": "f55a64802916d2b8aeec63aa5c491e74e5855d6d",
+      "limitations": [
+        "Repository history begins at the imported baseline; pre-initialization history is unavailable.",
+        "The bundled history script was run with a process-local execution-policy bypass; its comma-separated arguments were interpreted as combined patterns, so confirmed-path and manual diff review supplied the post-change evidence.",
+        "No Python/Tk runtime was available to observe click selection or details-panel rendering.",
+        "Unit tests remain unexecuted because Python is unavailable."
+      ],
+      "excludedCandidateCount": 0
+    }
+  },
+  "changeScenarios": [
+    {
+      "id": "change:standard-relation-meanings-implemented",
+      "changeType": "default-change",
+      "subject": "value:relation-meaning",
+      "directlyAffected": [
+        "constant:relation-meanings",
+        "method:standard-meaning-lookup",
+        "value:relation-meaning",
+        "test:standard-meanings"
+      ],
+      "transitivelyAffected": [
+        "method:selection-handlers",
+        "ui:details-panel",
+        "ui:relationship-legend"
+      ],
+      "compatibilityRisks": [
+        "Explicit annotations continue to override standard meanings.",
+        "Lookup is case-insensitive because labels are normalized to uppercase.",
+        "Unknown labels retain the generic source-to-target description."
+      ],
+      "dataMigration": "None",
+      "requiredVerification": [
+        "run unit tests",
+        "select READS edge",
+        "select WRITES edge",
+        "verify explicit READS annotation overrides built-in text",
+        "verify unknown label retains generic text"
+      ],
+      "rollout": "Backward-compatible parser update",
+      "rollback": "Revert 6ad2fa53c9f72aed2cebc922823df991d00549b8."
+    }
+  ],
+  "questionsAnswered": [
+    {
+      "questionNumber": 1,
+      "question": "What is the exact entity and value being mapped?",
+      "status": "answered",
+      "answer": "The mapped value is GraphEdge.meaning, now derived from explicit annotations, standard RELATION_MEANINGS, or a generic fallback.",
+      "evidenceRefs": [
+        "interactive_graph.py:30",
+        "interactive_graph.py:15",
+        "interactive_graph.py:142"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 2,
+      "question": "What does the value mean in the business or application domain?",
+      "status": "answered",
+      "answer": "It explains standard data-lineage relationships such as READS and WRITES automatically in the existing details panel.",
+      "evidenceRefs": [
+        "interactive_graph.py:15",
+        "README.md:43"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 3,
+      "question": "What are its type, allowed values, nullability, default, constraints, and invariants?",
+      "status": "answered",
+      "answer": "RELATION_MEANINGS is a non-null dictionary of 17 uppercase relationship labels to description strings; lookup is case-insensitive and explicit annotations take precedence.",
+      "evidenceRefs": [
+        "interactive_graph.py:15",
+        "interactive_graph.py:142"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 4,
+      "question": "What aliases represent the same value in code, APIs, storage, events, UI, configuration, and documentation?",
+      "status": "answered",
+      "answer": "Aliases include RELATION_MEANINGS, standard relationship meaning, READS, WRITES, GraphEdge.meaning, and relation descriptions.",
+      "evidenceRefs": [
+        "interactive_graph.py:15"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 5,
+      "question": "Where does the value originate?",
+      "status": "answered",
+      "answer": "Standard meanings originate from the declared RELATION_MEANINGS constant; explicit .mmd annotations and generic descriptions remain higher/lower precedence origins respectively.",
+      "evidenceRefs": [
+        "interactive_graph.py:15",
+        "interactive_graph.py:142"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 6,
+      "question": "Which constructors, defaults, APIs, imports, events, configuration sources, database reads, or external systems can supply it?",
+      "status": "answered",
+      "answer": "The local constant supplies standard defaults, .mmd annotations supply overrides, and parser context supplies generic unknown-label descriptions.",
+      "evidenceRefs": [
+        "interactive_graph.py:15",
+        "interactive_graph.py:142"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 7,
+      "question": "Which methods, functions, jobs, handlers, queries, or users can create, assign, or mutate it?",
+      "status": "answered",
+      "answer": "FlowchartParser assigns the final GraphEdge.meaning; no UI mutation or interface state was added.",
+      "evidenceRefs": [
+        "interactive_graph.py:142"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 8,
+      "question": "Can any code bypass the intended mutation path?",
+      "status": "answered_with_gaps",
+      "answer": "Dataclass attributes are frozen but containing dictionaries remain public; viewer StringVars are public attributes. No repository bypass is present.",
+      "evidenceRefs": [
+        "interactive_graph.py:16",
+        "mermaid_viewer.py:34"
+      ],
+      "gaps": [
+        "Dynamic external callers remain possible."
+      ]
+    },
+    {
+      "questionNumber": 9,
+      "question": "Where is the value validated, normalized, sanitized, authorized, or rejected?",
+      "status": "answered",
+      "answer": "Labels are normalized with upper(); dictionary lookup selects known labels; nested get calls enforce connection annotation, label annotation, standard, then generic precedence.",
+      "evidenceRefs": [
+        "interactive_graph.py:142"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 10,
+      "question": "Where is the value compared, switched on, matched, filtered, or used to control a branch?",
+      "status": "answered",
+      "answer": "Presence of connection annotation, label annotation, standard uppercase key, or unknown label determines the branch through nested fallback lookup.",
+      "evidenceRefs": [
+        "interactive_graph.py:142"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 11,
+      "question": "Where is the value stored, indexed, cached, copied, logged, measured, backed up, or searched?",
+      "status": "answered",
+      "answer": "Meaning metadata and selection live only in memory; explicit meanings remain in the .mmd source file. No database, cache, index, log, or backup exists.",
+      "evidenceRefs": [
+        "interactive_graph.py:21",
+        "README.md:31"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 12,
+      "question": "Which database columns, schemas, constraints, migrations, and serialization formats represent it?",
+      "status": "answered",
+      "answer": "The serialization is optional UTF-8 Mermaid comment text; runtime representations are string dataclass fields and Tk StringVars. No schema/migration exists.",
+      "evidenceRefs": [
+        "interactive_graph.py:66",
+        "mermaid_viewer.py:34"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 13,
+      "question": "Which APIs, commands, forms, files, or messages accept it?",
+      "status": "answered",
+      "answer": "FlowchartParser accepts annotations from .mmd files; click handlers accept canvas and legend UI events.",
+      "evidenceRefs": [
+        "interactive_graph.py:65",
+        "mermaid_viewer.py:190",
+        "mermaid_viewer.py:404"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 14,
+      "question": "Which APIs, views, reports, exports, events, logs, or metrics expose it?",
+      "status": "answered",
+      "answer": "The unchanged selected-item panel and legend selection expose built-in meanings through existing GraphEdge.meaning consumers.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:205",
+        "mermaid_viewer.py:215"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 15,
+      "question": "Which derived values are calculated from it?",
+      "status": "answered",
+      "answer": "The final relationship meaning is derived through four-level precedence: connection-specific, label-wide, built-in standard, generic.",
+      "evidenceRefs": [
+        "interactive_graph.py:142"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 16,
+      "question": "Which methods, UI components, permissions, workflows, side effects, and external consumers depend on it directly?",
+      "status": "answered",
+      "answer": "FlowchartParser and its tests depend directly; existing edge/legend selection and details panel consume the result transitively.",
+      "evidenceRefs": [
+        "interactive_graph.py:142",
+        "test_interactive_graph.py:56",
+        "mermaid_viewer.py:205"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 17,
+      "question": "What depends on those direct consumers transitively?",
+      "status": "answered",
+      "answer": "User comprehension, drag/select interaction, relation source-target clarity, reload reset behavior, and documentation depend transitively on those consumers.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:205",
+        "mermaid_viewer.py:404",
+        "README.md:31"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 18,
+      "question": "Which caches, calculations, contracts, assumptions, or indexes must be invalidated or rebuilt when it changes?",
+      "status": "answered",
+      "answer": "Reload reparses edge meanings. No cache, UI rebuild contract, database, or index changes.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:134"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 19,
+      "question": "Which tests specify or depend on its current behavior?",
+      "status": "answered_with_gaps",
+      "answer": "New tests specify READS, case-insensitive WRITES, and explicit-annotation override behavior; prior annotation/default tests remain.",
+      "evidenceRefs": [
+        "test_interactive_graph.py:56",
+        "test_interactive_graph.py:66"
+      ],
+      "gaps": [
+        "Tests cannot execute because Python is unavailable."
+      ]
+    },
+    {
+      "questionNumber": 20,
+      "question": "Which commits introduced or changed the entity, value, aliases, constraints, mutations, checks, storage, APIs, events, and downstream behavior?",
+      "status": "answered",
+      "answer": "6ad2fa5 adds the built-in vocabulary after eb16caa established optional meaning annotations and the details UI.",
+      "evidenceRefs": [
+        "git:eb16caac047d8e6c7be68da28bd259d2a831964f",
+        "git:6ad2fa53c9f72aed2cebc922823df991d00549b8"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 21,
+      "question": "Why is each included commit relevant, and what evidence supports that conclusion?",
+      "status": "answered",
+      "answer": "6ad2fa5 is included because its diff declares the standard definitions and changes the canonical meaning fallback; earlier behavior commits remain relevant origins/consumers.",
+      "evidenceRefs": [
+        "git:6ad2fa53c9f72aed2cebc922823df991d00549b8"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 22,
+      "question": "Is repository history complete, shallow, squashed, renamed, split across repositories, or otherwise limited?",
+      "status": "answered_with_gaps",
+      "answer": "History is not shallow but begins at an imported baseline; pre-initialization history is unavailable.",
+      "evidenceRefs": [
+        "git:f55a64802916d2b8aeec63aa5c491e74e5855d6d"
+      ],
+      "gaps": [
+        "Earlier development history cannot be recovered from this repository."
+      ]
+    },
+    {
+      "questionNumber": 23,
+      "question": "If the proposed change adds, removes, renames, retypes, or reinterprets the value, what is directly affected?",
+      "status": "answered",
+      "answer": "The default-change directly affects the standard vocabulary, parser fallback precedence, GraphEdge.meaning, tests, and documentation.",
+      "evidenceRefs": [
+        "interactive_graph.py:15",
+        "interactive_graph.py:142"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 24,
+      "question": "What is transitively affected by the proposed change?",
+      "status": "answered",
+      "answer": "Existing edge/legend selection and details-panel output are transitively affected, with no interface layout or event change.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:205",
+        "mermaid_viewer.py:215"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 25,
+      "question": "Could existing stored data, API clients, event consumers, exhaustive branches, reports, or UI code reject or misunderstand the new behavior?",
+      "status": "answered",
+      "answer": "Existing annotations remain authoritative, unknown labels retain generic text, and label case is normalized; no stored data or external contract is affected.",
+      "evidenceRefs": [
+        "interactive_graph.py:142"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 26,
+      "question": "Are a migration, backfill, compatibility period, contract version, feature flag, rollout plan, or rollback plan required?",
+      "status": "answered",
+      "answer": "No migration, flag, or compatibility period is needed; rollback reverts 6ad2fa5.",
+      "evidenceRefs": [
+        "git:6ad2fa53c9f72aed2cebc922823df991d00549b8"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 27,
+      "question": "Which conclusions are confirmed by static analysis, runtime observation, contracts, declarations, or Git history?",
+      "status": "answered_with_gaps",
+      "answer": "Vocabulary declarations, fallback order, and test expectations are statically confirmed; commit history confirms the implementation; runtime tests remain unavailable.",
+      "evidenceRefs": [
+        "interactive_graph.py:15",
+        "interactive_graph.py:142",
+        "test_interactive_graph.py:56",
+        "git:6ad2fa53c9f72aed2cebc922823df991d00549b8"
+      ],
+      "gaps": [
+        "Python runtime is unavailable."
+      ]
+    },
+    {
+      "questionNumber": 28,
+      "question": "Which relationships remain inferred, dynamic, external, or unknown?",
+      "status": "answered_with_gaps",
+      "answer": "Runtime display remains unobserved; wording quality for all 17 standard definitions is a product judgment rather than runtime behavior.",
+      "evidenceRefs": [
+        "interactive_graph.py:15"
+      ],
+      "gaps": [
+        "GUI verification requires Python/Tk."
+      ]
+    }
+  ],
+  "coverage": {
+    "evidenceModes": [
+      "declared",
+      "static",
+      "contract",
+      "history"
+    ],
+    "unmappedValues": [],
+    "unresolvedDynamicCalls": [
+      "Tk GUI event dispatch was not runtime-observed.",
+      "Mermaid CLI fallback behavior remains external.",
+      "Unsupported Mermaid flowchart syntax intentionally routes to static fallback.",
+      "Canvas/legend click selection and details-panel rendering were not runtime-observed.",
+      "Built-in meaning text display was not runtime-observed."
+    ]
+  },
+  "gaps": [
+    "Python is unavailable, so unit and GUI tests could not run.",
+    "Pre-initialization Git history is unavailable.",
+    "Wording quality for the 17 built-in definitions requires user review."
+  ],
+  "recommendedVerification": [
+    "Run py -m unittest -v with Python 3.10+.",
+    "Open a flowchart with READS and WRITES labels and select them.",
+    "Verify lowercase standard labels resolve identically.",
+    "Verify an explicit %% relation READS annotation overrides the built-in meaning.",
+    "Verify an unknown label still shows the generic connection description."
+  ]
+}

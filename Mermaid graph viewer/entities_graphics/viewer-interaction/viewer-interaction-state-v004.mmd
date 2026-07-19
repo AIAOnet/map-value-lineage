@@ -1,0 +1,30 @@
+%% Value Lineage v004 - based on 6ad2fa53c9f72aed2cebc922823df991d00549b8
+flowchart LR
+  subgraph Origins
+    ANN["Explicit %% relation annotation"]
+    VOCAB["RELATION_MEANINGS<br/>17 standard definitions"]
+    GENERIC["Generic connection description"]
+  end
+  subgraph Transformation
+    LOOKUP["Meaning precedence lookup"]
+    TESTS["Standard meaning tests"]
+  end
+  subgraph State
+    MEANING["GraphEdge.meaning"]
+  end
+  subgraph Downstream
+    EDGE["Selected edge details"]
+    LEGEND["Selected legend details"]
+    PANEL["Existing details panel"]
+  end
+  ANN -->|AFFECTS| LOOKUP
+  VOCAB -->|ORIGINATES_FROM| LOOKUP
+  GENERIC -->|ORIGINATES_FROM| LOOKUP
+  LOOKUP -->|WRITES| MEANING
+  TESTS -->|VALIDATES| VOCAB
+  TESTS -->|VALIDATES| LOOKUP
+  MEANING -->|READS| EDGE
+  MEANING -->|READS| LEGEND
+  EDGE -->|EXPOSES| PANEL
+  LEGEND -->|EXPOSES| PANEL
+

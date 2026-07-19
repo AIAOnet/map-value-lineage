@@ -1,0 +1,1032 @@
+{
+  "format": "value-lineage-impact-map",
+  "version": "1.0.0",
+  "mapVersion": 2,
+  "previousVersion": 1,
+  "basedOnCommit": "c57f240fad0997d8557ee17696587b073a12a7d1",
+  "previousMapCommit": "c65bfc1f02956daa1707c0867b58f82c958e3733",
+  "generatedAt": "2026-07-19T18:44:26.4402238+02:00",
+  "repository": {
+    "name": "Mermaid_graph",
+    "revision": "c57f240fad0997d8557ee17696587b073a12a7d1",
+    "generatedAt": "2026-07-19T18:44:26.4402238+02:00",
+    "analysisModes": [
+      "declared",
+      "static",
+      "contract",
+      "history"
+    ]
+  },
+  "target": {
+    "entityId": "entity:mermaid-viewer",
+    "valueId": "value:mermaid-viewer.graph-interaction-state",
+    "proposedChange": "Implemented draggable flowchart entities and distinct relationship edge/label colors with a legend, while preserving static fallback."
+  },
+  "relationshipTypes": {
+    "ORIGINATES_FROM": "The source supplies the value.",
+    "READS": "The source reads the value.",
+    "WRITES": "The source assigns the value.",
+    "VALIDATES": "The source checks the value.",
+    "BRANCHES_ON": "The source uses the value in control flow.",
+    "TRANSFORMS_TO": "The value contributes to a derived value.",
+    "EXPOSES": "The source presents the value to the UI.",
+    "CALLS": "The source invokes the target.",
+    "AFFECTS": "The source changes target behavior."
+  },
+  "entities": [
+    {
+      "id": "entity:mermaid-viewer",
+      "kind": "application_component",
+      "name": "MermaidViewer",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "MermaidViewer",
+        "line": 14
+      }
+    }
+  ],
+  "values": [
+    {
+      "id": "value:mermaid-viewer.graph-interaction-state",
+      "entityId": "entity:mermaid-viewer",
+      "name": "graphInteractionState",
+      "dataType": "composite runtime state",
+      "allowedValues": [
+        "no source",
+        "interactive flowchart displayed",
+        "dragging entity",
+        "panning canvas",
+        "zooming interactive graph",
+        "static fallback rendering",
+        "static bitmap displayed"
+      ],
+      "defaultValue": "no source; zoom=1.0",
+      "nullable": true,
+      "aliases": [
+        "source_path",
+        "original_image",
+        "display_image",
+        "zoom",
+        "render_generation",
+        "canvas diagram",
+        "graph",
+        "graph.positions",
+        "drag_node_id",
+        "relation_colors"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "method:init",
+      "kind": "constructor",
+      "name": "MermaidViewer.__init__",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "__init__",
+        "line": 15
+      }
+    },
+    {
+      "id": "ui:file-dialog",
+      "kind": "ui_input",
+      "name": "Open Mermaid diagram",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "open_file",
+        "line": 110
+      }
+    },
+    {
+      "id": "method:render-file",
+      "kind": "method",
+      "name": "render_file",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "render_file",
+        "line": 122
+      }
+    },
+    {
+      "id": "external:mmdc",
+      "kind": "external_process",
+      "name": "Mermaid CLI",
+      "location": {
+        "repositoryPath": "package.json",
+        "line": 7
+      }
+    },
+    {
+      "id": "method:show-render",
+      "kind": "method",
+      "name": "_show_render",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "_show_render",
+        "line": 152
+      }
+    },
+    {
+      "id": "ui:canvas-bitmap",
+      "kind": "ui_component",
+      "name": "Tk canvas bitmap",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "_update_image",
+        "line": 198
+      }
+    },
+    {
+      "id": "method:change-zoom",
+      "kind": "method",
+      "name": "change_zoom",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "change_zoom",
+        "line": 173
+      }
+    },
+    {
+      "id": "method:fit",
+      "kind": "method",
+      "name": "fit_to_window",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "fit_to_window",
+        "line": 180
+      }
+    },
+    {
+      "id": "method:pan",
+      "kind": "method",
+      "name": "pan handlers",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "_start_pan",
+        "line": 215
+      }
+    },
+    {
+      "id": "derived:render-scale",
+      "kind": "derived_value",
+      "name": "mmdc render scale",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "line": 142
+      }
+    },
+    {
+      "id": "derived:scroll-region",
+      "kind": "derived_value",
+      "name": "canvas scroll region",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "line": 213
+      }
+    },
+    {
+      "id": "ui:status",
+      "kind": "ui_component",
+      "name": "status and zoom labels",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "line": 100
+      }
+    },
+    {
+      "id": "method:parse-flowchart",
+      "kind": "parser",
+      "name": "FlowchartParser.parse",
+      "location": {
+        "repositoryPath": "interactive_graph.py",
+        "symbol": "FlowchartParser.parse",
+        "line": 65
+      }
+    },
+    {
+      "id": "value:node-positions",
+      "kind": "runtime_state",
+      "name": "InteractiveGraph.positions",
+      "location": {
+        "repositoryPath": "interactive_graph.py",
+        "symbol": "InteractiveGraph.positions",
+        "line": 35
+      }
+    },
+    {
+      "id": "value:relation-colors",
+      "kind": "derived_value",
+      "name": "relationship color map",
+      "location": {
+        "repositoryPath": "interactive_graph.py",
+        "symbol": "build_relation_color_map",
+        "line": 44
+      }
+    },
+    {
+      "id": "ui:interactive-entities",
+      "kind": "ui_component",
+      "name": "native draggable canvas entities",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "_draw_graph",
+        "line": 278
+      }
+    },
+    {
+      "id": "ui:relationship-legend",
+      "kind": "ui_component",
+      "name": "relationship color legend",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "_update_legend",
+        "line": 164
+      }
+    },
+    {
+      "id": "method:drag-entity",
+      "kind": "event_handler",
+      "name": "entity drag handlers",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "_drag_pan",
+        "line": 370
+      }
+    },
+    {
+      "id": "method:static-fallback",
+      "kind": "fallback",
+      "name": "static Mermaid renderer fallback",
+      "location": {
+        "repositoryPath": "mermaid_viewer.py",
+        "symbol": "_load_diagram",
+        "line": 134
+      }
+    },
+    {
+      "id": "test:interactive-graph",
+      "kind": "test",
+      "name": "FlowchartParserTests",
+      "location": {
+        "repositoryPath": "test_interactive_graph.py",
+        "symbol": "FlowchartParserTests",
+        "line": 6
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "method:init",
+      "type": "ORIGINATES_FROM",
+      "to": "value:mermaid-viewer.graph-interaction-state",
+      "evidence": "declared",
+      "evidenceRefs": [
+        "mermaid_viewer.py:21"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "ui:file-dialog",
+      "type": "WRITES",
+      "to": "value:mermaid-viewer.graph-interaction-state",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:113"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:render-file",
+      "type": "READS",
+      "to": "value:mermaid-viewer.graph-interaction-state",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:123"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:render-file",
+      "type": "CALLS",
+      "to": "external:mmdc",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:141"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:mermaid-viewer.graph-interaction-state",
+      "type": "TRANSFORMS_TO",
+      "to": "derived:render-scale",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:142"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:show-render",
+      "type": "WRITES",
+      "to": "value:mermaid-viewer.graph-interaction-state",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:157"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:mermaid-viewer.graph-interaction-state",
+      "type": "EXPOSES",
+      "to": "ui:canvas-bitmap",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:202"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:change-zoom",
+      "type": "WRITES",
+      "to": "value:mermaid-viewer.graph-interaction-state",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:176"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:fit",
+      "type": "WRITES",
+      "to": "value:mermaid-viewer.graph-interaction-state",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:185"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:pan",
+      "type": "AFFECTS",
+      "to": "ui:canvas-bitmap",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:218"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:mermaid-viewer.graph-interaction-state",
+      "type": "TRANSFORMS_TO",
+      "to": "derived:scroll-region",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:213"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:mermaid-viewer.graph-interaction-state",
+      "type": "EXPOSES",
+      "to": "ui:status",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:164"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "ui:file-dialog",
+      "type": "CALLS",
+      "to": "method:parse-flowchart",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:134"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:parse-flowchart",
+      "type": "TRANSFORMS_TO",
+      "to": "value:node-positions",
+      "evidence": "static",
+      "evidenceRefs": [
+        "interactive_graph.py:65",
+        "interactive_graph.py:137"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:parse-flowchart",
+      "type": "BRANCHES_ON",
+      "to": "method:static-fallback",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:140"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:node-positions",
+      "type": "EXPOSES",
+      "to": "ui:interactive-entities",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:278"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:drag-entity",
+      "type": "WRITES",
+      "to": "value:node-positions",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:375"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:drag-entity",
+      "type": "AFFECTS",
+      "to": "ui:interactive-entities",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:377"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "method:parse-flowchart",
+      "type": "TRANSFORMS_TO",
+      "to": "value:relation-colors",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:152",
+        "interactive_graph.py:44"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:relation-colors",
+      "type": "EXPOSES",
+      "to": "ui:interactive-entities",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:297"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "value:relation-colors",
+      "type": "EXPOSES",
+      "to": "ui:relationship-legend",
+      "evidence": "static",
+      "evidenceRefs": [
+        "mermaid_viewer.py:174"
+      ],
+      "confidence": 1
+    },
+    {
+      "from": "test:interactive-graph",
+      "type": "VALIDATES",
+      "to": "method:parse-flowchart",
+      "evidence": "static",
+      "evidenceRefs": [
+        "test_interactive_graph.py:7"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "from": "test:interactive-graph",
+      "type": "VALIDATES",
+      "to": "value:relation-colors",
+      "evidence": "static",
+      "evidenceRefs": [
+        "test_interactive_graph.py:20"
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "mutationRules": [
+    {
+      "valueId": "value:mermaid-viewer.graph-interaction-state",
+      "allowedWriters": [
+        "method:init",
+        "ui:file-dialog",
+        "method:show-render",
+        "method:change-zoom",
+        "method:fit"
+      ],
+      "requiredChecks": []
+    },
+    {
+      "valueId": "value:node-positions",
+      "allowedWriters": [
+        "method:parse-flowchart",
+        "method:drag-entity"
+      ],
+      "requiredChecks": []
+    }
+  ],
+  "history": {
+    "commits": [
+      {
+        "hash": "f55a64802916d2b8aeec63aa5c491e74e5855d6d",
+        "author": {
+          "name": "salem",
+          "email": "salem.badawi@ai-ao.net"
+        },
+        "authoredAt": "2026-07-19T18:35:43+02:00",
+        "committedAt": "2026-07-19T18:35:43+02:00",
+        "subject": "chore: establish project baseline",
+        "affectedPaths": [
+          "mermaid_viewer.py",
+          "README.md",
+          "package.json"
+        ],
+        "matchedAliases": [
+          "canvas",
+          "zoom",
+          "display_image",
+          "render_file",
+          "mouse"
+        ],
+        "relationship": "introduced",
+        "reason": "Initial tracked baseline containing the complete current viewer interaction and rendering implementation.",
+        "evidence": [
+          {
+            "type": "diff",
+            "detail": "Adds the viewer, renderer dependency, and usage documentation as the repository baseline."
+          }
+        ],
+        "confidence": 1
+      },
+      {
+        "hash": "c57f240fad0997d8557ee17696587b073a12a7d1",
+        "author": {
+          "name": "salem",
+          "email": "salem.badawi@ai-ao.net"
+        },
+        "authoredAt": "2026-07-19T18:44:05+02:00",
+        "committedAt": "2026-07-19T18:44:05+02:00",
+        "subject": "feat(viewer): add interactive flowchart entities",
+        "affectedPaths": [
+          "interactive_graph.py",
+          "mermaid_viewer.py",
+          "test_interactive_graph.py",
+          "README.md"
+        ],
+        "matchedAliases": [
+          "interactive",
+          "graph",
+          "positions",
+          "relation_colors",
+          "drag_node_id"
+        ],
+        "relationship": "modified",
+        "reason": "Introduces native flowchart parsing, draggable entity position mutation, relationship color mapping, legend rendering, tests, and documented fallback behavior.",
+        "evidence": [
+          {
+            "type": "diff",
+            "detail": "Adds InteractiveGraph and FlowchartParser, renders native canvas entities/edges, updates positions during drag, and adds relationship color tests."
+          }
+        ],
+        "confidence": 1
+      }
+    ],
+    "coverage": {
+      "examinedRefs": [
+        "--all"
+      ],
+      "isShallow": false,
+      "followedPaths": [
+        "mermaid_viewer.py",
+        "interactive_graph.py",
+        "test_interactive_graph.py"
+      ],
+      "searchAliases": [
+        "interactive",
+        "graph",
+        "position",
+        "relation",
+        "color",
+        "drag"
+      ],
+      "earliestExaminedCommit": "f55a64802916d2b8aeec63aa5c491e74e5855d6d",
+      "limitations": [
+        "Repository history begins at the imported baseline; pre-initialization history is unavailable.",
+        "The bundled history script was run with a process-local execution-policy bypass; its comma-separated arguments were interpreted as combined patterns, so confirmed-path and manual diff review supplied the post-change evidence."
+      ],
+      "excludedCandidateCount": 1
+    }
+  },
+  "changeScenarios": [
+    {
+      "id": "change:interactive-flowchart-implemented",
+      "changeType": "behavior-change",
+      "subject": "value:mermaid-viewer.graph-interaction-state",
+      "directlyAffected": [
+        "method:parse-flowchart",
+        "value:node-positions",
+        "value:relation-colors",
+        "ui:interactive-entities",
+        "ui:relationship-legend",
+        "method:drag-entity",
+        "method:static-fallback"
+      ],
+      "transitivelyAffected": [
+        "method:change-zoom",
+        "method:fit",
+        "method:pan",
+        "derived:scroll-region",
+        "ui:status"
+      ],
+      "compatibilityRisks": [
+        "Only supported flowchart syntax uses the native interactive path; unknown syntax deliberately falls back to Mermaid CLI.",
+        "More than eight unique relation labels reuse palette colors."
+      ],
+      "dataMigration": "None",
+      "requiredVerification": [
+        "run unit tests with Python installed",
+        "open sample.mmd",
+        "drag each entity and verify connected edges/labels move",
+        "verify legend colors match edges and labels",
+        "verify zoom, pan, fit, reload, and static fallback"
+      ],
+      "rollout": "Desktop application update with automatic per-file fallback",
+      "rollback": "Revert c57f240fad0997d8557ee17696587b073a12a7d1."
+    }
+  ],
+  "questionsAnswered": [
+    {
+      "questionNumber": 1,
+      "question": "What is the exact entity and value being mapped?",
+      "status": "answered",
+      "answer": "MermaidViewer.graphInteractionState, now including InteractiveGraph.positions, drag_node_id, and relation_colors.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:16",
+        "interactive_graph.py:31"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 2,
+      "question": "What does the value mean in the business or application domain?",
+      "status": "answered",
+      "answer": "It controls whether a Mermaid file is displayed as a draggable native flowchart or a static fallback and how entities, relations, zoom, and pan behave.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:134",
+        "mermaid_viewer.py:278"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 3,
+      "question": "What are its type, allowed values, nullability, default, constraints, and invariants?",
+      "status": "answered",
+      "answer": "Composite runtime state: graph and images are nullable; positions map node IDs to float coordinate pairs; drag_node_id is nullable; zoom remains 0.1..4.0; relation colors map labels to an eight-color palette.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:26",
+        "interactive_graph.py:31",
+        "interactive_graph.py:10",
+        "mermaid_viewer.py:232"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 4,
+      "question": "What aliases represent the same value in code, APIs, storage, events, UI, configuration, and documentation?",
+      "status": "answered",
+      "answer": "Aliases now include graph, graph.positions, drag_node_id, relation_colors, canvas graph/node/edge tags, plus the prior source/image/zoom aliases.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:26",
+        "mermaid_viewer.py:286",
+        "mermaid_viewer.py:310"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 5,
+      "question": "Where does the value originate?",
+      "status": "answered",
+      "answer": "Flowchart state originates from UTF-8 .mmd content parsed by FlowchartParser; positions originate from _layout; colors originate from first-seen relationship labels.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:134",
+        "interactive_graph.py:65",
+        "interactive_graph.py:137"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 6,
+      "question": "Which constructors, defaults, APIs, imports, events, configuration sources, database reads, or external systems can supply it?",
+      "status": "answered",
+      "answer": "The file dialog and local .mmd file supply source; FlowchartParser supplies nodes, edges, and positions; Mermaid CLI supplies fallback PNG output.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:122",
+        "mermaid_viewer.py:134",
+        "interactive_graph.py:65",
+        "mermaid_viewer.py:189"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 7,
+      "question": "Which methods, functions, jobs, handlers, queries, or users can create, assign, or mutate it?",
+      "status": "answered",
+      "answer": "FlowchartParser creates graph state; _show_interactive_graph assigns it; _drag_pan mutates node positions; zoom/fit mutate zoom; static render methods mutate image state.",
+      "evidenceRefs": [
+        "interactive_graph.py:65",
+        "mermaid_viewer.py:150",
+        "mermaid_viewer.py:370",
+        "mermaid_viewer.py:229"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 8,
+      "question": "Can any code bypass the intended mutation path?",
+      "status": "answered_with_gaps",
+      "answer": "Python attributes remain publicly mutable, but no repository code bypasses the parser/drag/viewer mutation paths.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:26",
+        "interactive_graph.py:31"
+      ],
+      "gaps": [
+        "Dynamic external Python callers remain possible."
+      ]
+    },
+    {
+      "questionNumber": 9,
+      "question": "Where is the value validated, normalized, sanitized, authorized, or rejected?",
+      "status": "answered",
+      "answer": "The parser validates the diagram header and supported syntax, rejects partial parsing, clamps zoom, and preserves static fallback; no authorization layer applies.",
+      "evidenceRefs": [
+        "interactive_graph.py:68",
+        "interactive_graph.py:93",
+        "mermaid_viewer.py:232"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 10,
+      "question": "Where is the value compared, switched on, matched, filtered, or used to control a branch?",
+      "status": "answered",
+      "answer": "Diagram type, parse success, graph/image presence, node tags, drag state, edge style, node shape, and Shift modifier control branches.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:140",
+        "mermaid_viewer.py:229",
+        "mermaid_viewer.py:356",
+        "mermaid_viewer.py:385"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 11,
+      "question": "Where is the value stored, indexed, cached, copied, logged, measured, backed up, or searched?",
+      "status": "answered_with_gaps",
+      "answer": "Interactive positions and colors exist only in memory; source remains a local file and fallback pixels remain temporary PNG files.",
+      "evidenceRefs": [
+        "interactive_graph.py:31",
+        "mermaid_viewer.py:189"
+      ],
+      "gaps": [
+        "Dragged positions are not persisted across reloads."
+      ]
+    },
+    {
+      "questionNumber": 12,
+      "question": "Which database columns, schemas, constraints, migrations, and serialization formats represent it?",
+      "status": "answered",
+      "answer": "No database exists. Input serialization is Mermaid text; fallback output is PNG; interactive graph state is Python dataclasses and dictionaries.",
+      "evidenceRefs": [
+        "interactive_graph.py:16",
+        "interactive_graph.py:31",
+        "mermaid_viewer.py:193"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 13,
+      "question": "Which APIs, commands, forms, files, or messages accept it?",
+      "status": "answered",
+      "answer": "The file dialog accepts .mmd files; FlowchartParser accepts source text; mmdc accepts unsupported diagrams through command arguments.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:122",
+        "interactive_graph.py:65",
+        "mermaid_viewer.py:193"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 14,
+      "question": "Which APIs, views, reports, exports, events, logs, or metrics expose it?",
+      "status": "answered",
+      "answer": "The native canvas exposes entities and colored relations; the legend exposes label-to-color mapping; status exposes graph counts; unsupported formats expose a bitmap.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:157",
+        "mermaid_viewer.py:164",
+        "mermaid_viewer.py:278"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 15,
+      "question": "Which derived values are calculated from it?",
+      "status": "answered",
+      "answer": "Derived values include layout positions, relationship color map, edge endpoints, fit zoom, screen positions, and scroll region.",
+      "evidenceRefs": [
+        "interactive_graph.py:44",
+        "interactive_graph.py:137",
+        "mermaid_viewer.py:334"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 16,
+      "question": "Which methods, UI components, permissions, workflows, side effects, and external consumers depend on it directly?",
+      "status": "answered",
+      "answer": "Parser, canvas entity renderer, drag handlers, legend, zoom/fit, background pan, status text, tests, and static fallback depend directly on graph state.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:134",
+        "mermaid_viewer.py:164",
+        "mermaid_viewer.py:278",
+        "mermaid_viewer.py:370"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 17,
+      "question": "What depends on those direct consumers transitively?",
+      "status": "answered",
+      "answer": "Text readability, connected-edge geometry, label ownership clarity, scrollbar extents, reload behavior, and README guidance depend transitively on those consumers.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:297",
+        "mermaid_viewer.py:323",
+        "README.md:26"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 18,
+      "question": "Which caches, calculations, contracts, assumptions, or indexes must be invalidated or rebuilt when it changes?",
+      "status": "answered",
+      "answer": "Every node move redraws edges, labels, and nodes; zoom/fit redraw the native graph; reload reconstructs positions and colors. No external cache/index exists.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:236",
+        "mermaid_viewer.py:377"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 19,
+      "question": "Which tests specify or depend on its current behavior?",
+      "status": "answered_with_gaps",
+      "answer": "test_interactive_graph.py specifies node/edge parsing, shapes, color stability/distinctness, non-flowchart rejection, and incomplete-syntax fallback.",
+      "evidenceRefs": [
+        "test_interactive_graph.py:6"
+      ],
+      "gaps": [
+        "Tests could not execute because no Python interpreter is installed in the environment."
+      ]
+    },
+    {
+      "questionNumber": 20,
+      "question": "Which commits introduced or changed the entity, value, aliases, constraints, mutations, checks, storage, APIs, events, and downstream behavior?",
+      "status": "answered",
+      "answer": "The baseline commit introduced static state; c57f240 introduced interactive graph, position, drag, relation color, legend, tests, and fallback behavior.",
+      "evidenceRefs": [
+        "git:f55a64802916d2b8aeec63aa5c491e74e5855d6d",
+        "git:c57f240fad0997d8557ee17696587b073a12a7d1"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 21,
+      "question": "Why is each included commit relevant, and what evidence supports that conclusion?",
+      "status": "answered",
+      "answer": "Both commits were included after diff review: the first establishes the static baseline, while c57f240 adds all interactive state and consumers.",
+      "evidenceRefs": [
+        "git:f55a64802916d2b8aeec63aa5c491e74e5855d6d",
+        "git:c57f240fad0997d8557ee17696587b073a12a7d1"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 22,
+      "question": "Is repository history complete, shallow, squashed, renamed, split across repositories, or otherwise limited?",
+      "status": "answered_with_gaps",
+      "answer": "History is not shallow but begins at an imported baseline; pre-initialization history is unavailable.",
+      "evidenceRefs": [
+        "git:f55a64802916d2b8aeec63aa5c491e74e5855d6d"
+      ],
+      "gaps": [
+        "Earlier development history cannot be recovered from this repository."
+      ]
+    },
+    {
+      "questionNumber": 23,
+      "question": "If the proposed change adds, removes, renames, retypes, or reinterprets the value, what is directly affected?",
+      "status": "answered",
+      "answer": "The implemented reinterpretation directly affects parsing, layout, positions, drag dispatch, canvas entities/edges, relation colors, legend, and fallback selection.",
+      "evidenceRefs": [
+        "interactive_graph.py:65",
+        "mermaid_viewer.py:134",
+        "mermaid_viewer.py:278"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 24,
+      "question": "What is transitively affected by the proposed change?",
+      "status": "answered",
+      "answer": "Zoom, fit, pan, scroll region, status help, README, renderer use, and error behavior are transitively affected.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:229",
+        "mermaid_viewer.py:239",
+        "mermaid_viewer.py:356",
+        "README.md:26"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 25,
+      "question": "Could existing stored data, API clients, event consumers, exhaustive branches, reports, or UI code reject or misunderstand the new behavior?",
+      "status": "answered",
+      "answer": "No stored data or external clients exist. Unsupported or partially supported Mermaid syntax is routed to the existing static renderer to prevent misinterpretation.",
+      "evidenceRefs": [
+        "interactive_graph.py:93",
+        "mermaid_viewer.py:143"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 26,
+      "question": "Are a migration, backfill, compatibility period, contract version, feature flag, rollout plan, or rollback plan required?",
+      "status": "answered",
+      "answer": "No migration or feature flag is needed. Automatic fallback is the compatibility mechanism; rollout is the desktop update; rollback reverts c57f240.",
+      "evidenceRefs": [
+        "mermaid_viewer.py:143",
+        "git:c57f240fad0997d8557ee17696587b073a12a7d1"
+      ],
+      "gaps": []
+    },
+    {
+      "questionNumber": 27,
+      "question": "Which conclusions are confirmed by static analysis, runtime observation, contracts, declarations, or Git history?",
+      "status": "answered_with_gaps",
+      "answer": "Declarations and flows are confirmed by static evidence, expected parser behavior by test definitions, renderer dependency by contract, and changes by Git history; runtime GUI evidence is unavailable.",
+      "evidenceRefs": [
+        "interactive_graph.py:31",
+        "test_interactive_graph.py:6",
+        "package.json:7",
+        "git:c57f240fad0997d8557ee17696587b073a12a7d1"
+      ],
+      "gaps": [
+        "Tests are authored but not runtime-confirmed."
+      ]
+    },
+    {
+      "questionNumber": 28,
+      "question": "Which relationships remain inferred, dynamic, external, or unknown?",
+      "status": "answered_with_gaps",
+      "answer": "Runtime drag ergonomics, Tk rendering on the user machine, broad Mermaid syntax coverage, more-than-eight-label color reuse, and external mmdc reliability remain dynamic or unverified.",
+      "evidenceRefs": [
+        "interactive_graph.py:44",
+        "mermaid_viewer.py:370"
+      ],
+      "gaps": [
+        "Python/Tk runtime is unavailable in this execution environment."
+      ]
+    }
+  ],
+  "coverage": {
+    "evidenceModes": [
+      "declared",
+      "static",
+      "contract",
+      "history"
+    ],
+    "unmappedValues": [],
+    "unresolvedDynamicCalls": [
+      "Tk GUI event dispatch was not runtime-observed.",
+      "Mermaid CLI fallback behavior remains external.",
+      "Unsupported Mermaid flowchart syntax intentionally routes to static fallback."
+    ]
+  },
+  "gaps": [
+    "Python is not installed in the execution environment, so unit and GUI tests could not run.",
+    "Pre-initialization Git history is unavailable.",
+    "Dragged positions are session-only and reset on reload.",
+    "Palette colors repeat after eight unique relationship labels."
+  ],
+  "recommendedVerification": [
+    "Install/use Python 3.10+ and run py -m unittest -v.",
+    "Open sample.mmd and drag every entity.",
+    "Confirm connected edges and labels move with the entity.",
+    "Confirm every legend swatch matches its edge and label.",
+    "Exercise wheel zoom, background pan, fit, reload, and an unsupported diagram fallback.",
+    "Parse JSON and validate every edge endpoint."
+  ]
+}

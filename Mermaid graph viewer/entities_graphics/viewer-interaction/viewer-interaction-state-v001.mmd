@@ -1,0 +1,32 @@
+%% Value Lineage v001 - based on f55a64802916d2b8aeec63aa5c491e74e5855d6d
+flowchart LR
+  subgraph Origins
+    INIT["MermaidViewer.__init__"]
+    FILE["Open file dialog"]
+    MMDC["Mermaid CLI"]
+  end
+  subgraph State
+    STATE["graphInteractionState<br/>static bitmap + zoom + pan"]
+  end
+  subgraph Mutation_Checking
+    RENDER["render_file / _show_render"]
+    ZOOM["change_zoom / fit_to_window"]
+    PAN["pan handlers"]
+  end
+  subgraph Downstream
+    BITMAP["Tk canvas bitmap"]
+    SCALE["Derived render scale"]
+    SCROLL["Derived scroll region"]
+    STATUS["Status + zoom labels"]
+  end
+  INIT -->|ORIGINATES_FROM| STATE
+  FILE -->|WRITES| STATE
+  RENDER -->|READS / WRITES| STATE
+  RENDER -->|CALLS| MMDC
+  STATE -->|TRANSFORMS_TO| SCALE
+  STATE -->|EXPOSES| BITMAP
+  ZOOM -->|WRITES| STATE
+  PAN -->|AFFECTS| BITMAP
+  STATE -->|TRANSFORMS_TO| SCROLL
+  STATE -->|EXPOSES| STATUS
+
