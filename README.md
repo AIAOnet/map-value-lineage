@@ -117,8 +117,11 @@ Save both files in the project's graph directory:
 Do not overwrite an older graph. Increment the version number for every new application change.
 
 ## 3. Mermaid graph viewer
+Mermaid graph viewer — Helps users understand how values flow through the application and how changes made by the agent affect the data flow.
 
 The Mermaid graph viewer displays the generated `.mmd` graph files.
+
+Important: Read the README file in the Mermaid graph viewer directory before installing or running the viewer.
 
 ### Install
 
