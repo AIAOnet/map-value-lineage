@@ -1,6 +1,6 @@
 # Value Lineage and Change-Impact Mapping
 
-This project helps Codex understand how an entity value moves through an application, where it can change, and what may be affected by a code change.
+This project helps Codex and Claude Code understand how an entity value moves through an application, where it can change, and what may be affected by a code change.
 
 The project contains three components:
 
@@ -23,17 +23,23 @@ The instructions require Codex to:
 - Generate a new numbered graph version containing the application commit hash.
 - Store the new graph under `entities_graphics`.
 
-## 2. Codex skill
+## 2. Agent skill for Codex and Claude Code
 
 The `map-value-lineage` skill contains the reusable mapping workflow and JSON structure.
 
-Copy the complete skill directory into the current user's Codex skills directory:
+The skill follows the Agent Skills `SKILL.md` format and can be used with both Codex and Claude Code.
 
-```text
-C:\Users\<username>\.codex\skills\map-value-lineage\
-```
+### Install for Codex
 
-The following file must exist directly inside that directory:
+Copy the complete skill directory into the current user's Codex skills directory.
+
+| Operating system | Codex skill path |
+| --- | --- |
+| Windows | `C:\Users\<username>\.codex\skills\map-value-lineage\SKILL.md` |
+| macOS | `~/.codex/skills/map-value-lineage/SKILL.md` |
+| Linux or WSL | `~/.codex/skills/map-value-lineage/SKILL.md` |
+
+The `SKILL.md` file must exist directly inside the `map-value-lineage` directory. For example, on Windows:
 
 ```text
 C:\Users\<username>\.codex\skills\map-value-lineage\SKILL.md
@@ -41,11 +47,41 @@ C:\Users\<username>\.codex\skills\map-value-lineage\SKILL.md
 
 Restart Codex or open a new task after installing the skill.
 
-Invoke it with:
+Invoke it in Codex with:
 
 ```text
 Use $map-value-lineage to map <Entity>.<value> and analyze the impact of the requested change.
 ```
+
+### Install for Claude Code
+
+Copy the complete skill directory into the current user's Claude Code skills directory.
+
+| Operating system | Claude Code skill path |
+| --- | --- |
+| Windows | `C:\Users\<username>\.claude\skills\map-value-lineage\SKILL.md` |
+| macOS | `~/.claude/skills/map-value-lineage/SKILL.md` |
+| Linux or WSL | `~/.claude/skills/map-value-lineage/SKILL.md` |
+
+The `SKILL.md` file must exist directly inside the `map-value-lineage` directory. For example, on Windows:
+
+```text
+C:\Users\<username>\.claude\skills\map-value-lineage\SKILL.md
+```
+
+The skill may also be installed for one project under:
+
+```text
+<project-directory>\.claude\skills\map-value-lineage\SKILL.md
+```
+
+Invoke it in Claude Code with:
+
+```text
+/map-value-lineage
+```
+
+Claude Code can also select the skill automatically when the request matches its description.
 
 The skill produces:
 
@@ -97,7 +133,7 @@ If the project is running in a Codex sandbox, use the `entities_graphics` direct
 ## Expected workflow
 
 ```text
-Install the Codex skill
+Install the agent skill for Codex or Claude Code
 -> place AGENTS.md in the project root
 -> inspect the latest graph
 -> analyze the requested change
@@ -124,6 +160,14 @@ project-root\
 `-- application-files...
 
 C:\Users\<username>\.codex\skills\
+`-- map-value-lineage\
+    |-- SKILL.md
+    |-- agents\
+    |-- assets\
+    |-- references\
+    `-- scripts\
+
+C:\Users\<username>\.claude\skills\
 `-- map-value-lineage\
     |-- SKILL.md
     |-- agents\
