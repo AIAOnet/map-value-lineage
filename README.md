@@ -25,7 +25,7 @@ The instructions require Codex to:
 
 ## 2. Agent skill for Codex and Claude Code
 
-The `map-value-lineage` skill contains the reusable mapping workflow and JSON structure.
+The `map-value-lineage` skill contains the reusable mapping workflow and JSON structure. Copy the * complete skill directory * to `.codex\skills` for Codex or `.claude\skills` for Claude Code.
 
 The skill follows the Agent Skills `SKILL.md` format and can be used with both Codex and Claude Code.
 
