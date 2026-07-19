@@ -1,0 +1,132 @@
+{
+  "format": "value-lineage-impact-map",
+  "version": "1.0.0",
+  "repository": {
+    "name": "example-application",
+    "revision": "0123456789abcdef0123456789abcdef01234567",
+    "generatedAt": "2026-01-01T00:00:00Z",
+    "analysisModes": ["declared", "static", "contract", "history"]
+  },
+  "target": {
+    "entityId": "entity:order",
+    "valueId": "value:order.status",
+    "proposedChange": "Add allowed value: refunded"
+  },
+  "relationshipTypes": {
+    "ORIGINATES_FROM": "The target creates or supplies the value.",
+    "MUTATES": "The source can change the value.",
+    "VALIDATES": "The source checks the value.",
+    "BRANCHES_ON": "The source uses the value in control flow.",
+    "STORES_IN": "The value is persisted in the target.",
+    "EXPOSES": "The source returns or publishes the value.",
+    "EMITS": "The source emits the target event after a change.",
+    "TRANSFORMS_TO": "The value contributes to the derived target."
+  },
+  "entities": [
+    {
+      "id": "entity:order",
+      "kind": "domain_entity",
+      "name": "Order",
+      "location": {"repositoryPath": "src/domain/order.ts", "symbol": "Order", "line": 10}
+    }
+  ],
+  "values": [
+    {
+      "id": "value:order.status",
+      "entityId": "entity:order",
+      "name": "status",
+      "dataType": "string",
+      "allowedValues": ["draft", "submitted", "paid", "shipped", "cancelled"],
+      "defaultValue": "draft",
+      "nullable": false,
+      "aliases": ["Order.status", "order_status", "orderStatus"]
+    }
+  ],
+  "nodes": [
+    {"id": "method:order-create", "kind": "method", "name": "Order.create", "location": {"repositoryPath": "src/domain/order.ts", "symbol": "Order.create", "line": 25}},
+    {"id": "method:change-status", "kind": "method", "name": "Order.changeStatus", "location": {"repositoryPath": "src/domain/order.ts", "symbol": "Order.changeStatus", "line": 44}},
+    {"id": "check:transition", "kind": "validation", "name": "Allowed status transition", "location": {"repositoryPath": "src/domain/order.ts", "symbol": "canTransitionTo", "line": 61}},
+    {"id": "store:orders.status", "kind": "database_column", "name": "orders.status", "location": {"repositoryPath": "db/schema.sql", "line": 18}},
+    {"id": "api:get-order", "kind": "api_endpoint", "name": "GET /orders/{id}", "location": {"repositoryPath": "src/api/orders.ts", "symbol": "getOrder", "line": 70}},
+    {"id": "event:status-changed", "kind": "event", "name": "OrderStatusChanged", "location": {"repositoryPath": "src/events/order-status-changed.json"}},
+    {"id": "value:available-actions", "kind": "derived_value", "name": "Order.availableActions"}
+  ],
+  "edges": [
+    {"from": "value:order.status", "type": "ORIGINATES_FROM", "to": "method:order-create", "evidence": "static", "evidenceRefs": ["src/domain/order.ts:25"], "confidence": 0.99},
+    {"from": "method:change-status", "type": "MUTATES", "to": "value:order.status", "evidence": "static", "evidenceRefs": ["src/domain/order.ts:44"], "confidence": 0.99},
+    {"from": "method:change-status", "type": "VALIDATES", "to": "check:transition", "evidence": "static", "evidenceRefs": ["src/domain/order.ts:48"], "confidence": 0.99},
+    {"from": "value:order.status", "type": "STORES_IN", "to": "store:orders.status", "evidence": "contract", "evidenceRefs": ["db/schema.sql:18"], "confidence": 1.0},
+    {"from": "api:get-order", "type": "EXPOSES", "to": "value:order.status", "evidence": "contract", "evidenceRefs": ["openapi.yaml#/components/schemas/Order/status"], "confidence": 1.0},
+    {"from": "method:change-status", "type": "EMITS", "to": "event:status-changed", "evidence": "static", "evidenceRefs": ["src/domain/order.ts:55"], "confidence": 0.98},
+    {"from": "value:order.status", "type": "TRANSFORMS_TO", "to": "value:available-actions", "evidence": "static", "evidenceRefs": ["src/domain/order-view.ts:20"], "confidence": 0.98}
+  ],
+  "mutationRules": [
+    {
+      "valueId": "value:order.status",
+      "allowedWriters": ["method:order-create", "method:change-status"],
+      "requiredChecks": ["check:transition"]
+    }
+  ],
+  "history": {
+    "commits": [
+      {
+        "hash": "89abcdef0123456789abcdef0123456789abcdef",
+        "author": {"name": "Example Author", "email": "author@example.invalid"},
+        "authoredAt": "2025-01-10T10:00:00Z",
+        "committedAt": "2025-01-10T10:05:00Z",
+        "subject": "Add order status transition validation",
+        "affectedPaths": ["src/domain/order.ts", "src/domain/order.test.ts"],
+        "matchedAliases": ["Order.status", "canTransitionTo"],
+        "relationship": "validated",
+        "reason": "The diff introduced the canonical transition guard used before status mutation.",
+        "evidence": [{"type": "diff", "detail": "Adds canTransitionTo and invokes it from changeStatus."}],
+        "confidence": 0.99
+      }
+    ],
+    "coverage": {
+      "examinedRefs": ["--all"],
+      "isShallow": false,
+      "followedPaths": ["src/domain/order.ts"],
+      "searchAliases": ["Order.status", "order_status", "orderStatus", "canTransitionTo"],
+      "earliestExaminedCommit": "example only",
+      "limitations": ["Example commit metadata is illustrative and does not describe a real repository."],
+      "excludedCandidateCount": 0
+    }
+  },
+  "changeScenarios": [
+    {
+      "id": "change:add-refunded",
+      "changeType": "add",
+      "subject": "value:order.status",
+      "directlyAffected": ["check:transition", "store:orders.status", "api:get-order", "event:status-changed"],
+      "transitivelyAffected": ["value:available-actions"],
+      "compatibilityRisks": ["Existing clients may treat an unknown enum value as an error."],
+      "requiredVerification": ["transition tests", "schema migration test", "consumer compatibility test"]
+    }
+  ],
+  "questionsAnswered": [
+    {
+      "questionNumber": 1,
+      "question": "What is the exact entity and value being mapped?",
+      "status": "answered",
+      "answer": "Order.status",
+      "evidenceRefs": ["src/domain/order.ts:10"],
+      "gaps": []
+    },
+    {
+      "questionNumber": "2-28",
+      "question": "Expand this placeholder into one entry per required question in references/questions.md.",
+      "status": "example_placeholder",
+      "answer": null,
+      "evidenceRefs": [],
+      "gaps": ["The generated result must contain 28 individual entries; placeholders are not allowed."]
+    }
+  ],
+  "coverage": {
+    "evidenceModes": ["static", "contract", "history"],
+    "unmappedValues": [],
+    "unresolvedDynamicCalls": []
+  },
+  "gaps": ["Runtime traces were not available."],
+  "recommendedVerification": ["Parse JSON", "Validate edge references", "Review every candidate Git diff", "Run contract and behavior tests"]
+}

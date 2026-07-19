@@ -1,0 +1,11 @@
+flowchart LR
+    origin["Order.create default"] -->|ORIGINATES_FROM| value["Order.status"]
+    api["PATCH /orders/id/status"] -->|ACCEPTS| value
+    writer["Order.changeStatus"] -->|MUTATES| value
+    writer -->|VALIDATES| guard["Transition guard"]
+    value -->|STORES_IN| database[("orders.status")]
+    value -->|EXPOSES| output["GET /orders/id"]
+    writer -->|EMITS| event["OrderStatusChanged"]
+    value -->|TRANSFORMS_TO| actions["availableActions"]
+    actions -->|AFFECTS| ui["Order action buttons"]
+    history["Related Git commits"] -.->|HISTORY_EVIDENCE| value

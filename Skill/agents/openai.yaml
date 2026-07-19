@@ -1,0 +1,4 @@
+interface:
+  display_name: "Map Value Lineage"
+  short_description: "Trace values and assess downstream code impact"
+  default_prompt: "Use $map-value-lineage to trace an entity value, its Git history, and every direct or downstream impact."
